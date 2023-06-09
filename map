@@ -1,0 +1,142 @@
+Admin
+	|
+    Creates (Cannot Be Deleted)
+	|
+	|-Corporate
+		|
+	    HasMany
+			|
+			|-Store
+				|
+				HasMany
+					|
+					|-Cashier
+					    |
+					HasMany (Do Not Cascade On Delete)
+		  			    	|
+						    |-Ticket (Discount Ticket)
+
+User
+	|
+	HasMany
+		|
+		|-Coupon
+    |
+    HasMany (Do Not Cascade On Delete)
+        |
+        |-Ticket
+
+
+====================================================================
+
+###Views
+
+    Nodo Cero Admin
+        List of corporates
+            [ HECHO ] - List View
+            [ HECHO ] - Create
+            View
+            Update
+            Delete
+        List of Nodocero Admins
+            List View
+            Create
+            View
+            Update
+            Delete
+
+    Corporate Admin
+        List of Stores
+            List View
+            Create
+            View
+            Update
+            Delete
+
+    Store
+        List of cashiers -> StoreAccounts
+        Point of Sale
+        List of Tickets
+
+
+###Components
+
+    List
+        Table
+        Button
+    Create
+        Modal
+        Form
+            Input
+        Button
+    View
+        Modal
+        Profile
+        Button
+    Update
+        Modal
+        Form
+            Input
+        Button
+    Delete
+        Button
+
+    Store
+        Point of Sale
+        
+
+====================================================================
+
+Super admin / Nodo cero
+	Nombre
+	Usuario
+	Contraseña
+
+Corporativo
+	Nombre del Corporativo
+	Contrasñea
+	Número de telefono
+	Correo
+	Usuario
+	Incumplimientos
+
+Tienda
+	Nombre
+	Dirección
+	Nombre Administrador
+	Usuario
+	Contraseña
+	Contacto
+
+Cajero
+	Nombre
+	Número de Cajero
+	Usuario
+	Contraseña
+	Tipo de cajero
+	Pertenencia
+
+
+
+Usuario
+	Nombre
+	Celular
+	Correo Electrónico
+	Contraseña
+	Pertenencia
+	Usuario
+
+Stock
+	Tipo
+	Valido simple
+	Descripción Corta
+	Descripción Larga
+	
+	Rango de validez
+	Pertenencia
+	
+
+
+Cupón de rifa
+
+Cupón de fidelización [Pendiente]
