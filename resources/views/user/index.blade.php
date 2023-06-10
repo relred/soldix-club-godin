@@ -36,5 +36,4 @@
             </x-coupon>
             </div>
     </x-bladewind::centered-content>
-
 </x-app-layout>

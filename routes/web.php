@@ -27,7 +27,7 @@ Route::get('/test-select-gadget', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('wallet');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/playground', function () {
