@@ -14,33 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// HOME
 Route::get('/', function () {
     return view('welcome');
 });
+// END HOME
 
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/test-select-gadget', function () {
-    return view('test-select-gadget');
-});
-
+// USER
 Route::get('/dashboard', function () {
     return redirect()->route('wallet');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/playground', function () {
-    return view('playground');
-})->middleware(['auth', 'verified'])->name('playground');
-
-Route::get('/pos', function () {
-    return view('pos.pos');
-})->middleware(['auth', 'verified'])->name('pos');
-
-Route::get('/result', function () {
-    return view('pos.result');
-})->middleware(['auth', 'verified'])->name('result');
 
 Route::get('/wallet', function () {
     return view('user.index');
@@ -49,11 +32,41 @@ Route::get('/wallet', function () {
 Route::get('/coupon', function () {
     return view('user.coupon');
 })->middleware(['auth', 'verified'])->name('coupon');
+// END USER
+
+// CASHIER
+Route::get('/pos', function () {
+    return view('pos.pos');
+})->middleware(['auth', 'verified'])->name('pos');
+
+Route::get('/result', function () {
+    return view('pos.result');
+})->middleware(['auth', 'verified'])->name('result');
+// END CASHIER
+
+// CORPORATE
+// END CORPORATE
+
+// SUPERADMIN
+Route::get('/playground', function () {
+    return view('playground');
+})->middleware(['auth', 'verified'])->name('playground');
+// END SUPERADMIN
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// TESTS
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::get('/test-select-gadget', function () {
+    return view('test-select-gadget');
+});
+// END TESTS
 
 require __DIR__.'/auth.php';

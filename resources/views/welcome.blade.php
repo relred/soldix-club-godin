@@ -42,7 +42,7 @@
                 <x-bladewind::empty-state
                     image="https://res.cloudinary.com/de6hiq5n4/image/upload/v1682900896/assets/soldix/a_n87auu.jpg">
 
-                    <p class="pb-4">You have no biometric data available</p>
+                    <p class="pb-4">Soldix club</p>
                     <a href="{{ route('login') }}">
                         <x-bladewind::button color="red" size="small">
                             Entrar
