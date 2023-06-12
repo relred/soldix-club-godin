@@ -48,9 +48,9 @@ Route::get('/result', function () {
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/playground', function () {
-    return view('playground');
-})->middleware(['auth', 'verified'])->name('playground');
+Route::get('/admin', function () {
+    return view('admin.index');
+})->middleware(['auth', 'verified'])->name('admin');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {

@@ -8,16 +8,18 @@ use Illuminate\View\Component;
 
 class Coupon extends Component
 {
-
     public $image;
+
     public $type;
+
     public $tag;
+
     public $valid;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($image,$type,$tag,$valid)
+    public function __construct($image, $type, $tag, $valid)
     {
         $this->image = $image;
         $this->type = $type;

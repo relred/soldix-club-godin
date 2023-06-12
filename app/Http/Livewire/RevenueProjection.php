@@ -6,12 +6,15 @@ use Livewire\Component;
 
 class RevenueProjection extends Component
 {
-
     public $range = 1;
+
     public $users;
+
     public $type;
+
     public $revenue;
-    public $ratios = ['go'=>105,'cuida'=>187,'merc'=>145];
+
+    public $ratios = ['go' => 105, 'cuida' => 187, 'merc' => 145];
 
     public function render()
     {
@@ -19,12 +22,12 @@ class RevenueProjection extends Component
             $this->revenue = $this->users * $this->ratios[$this->type];
         }
         $this->users = $this->range * 100;
+
         return view('livewire.revenue-projection');
     }
-    
+
     public function calculate()
     {
         $this->revenue = $this->users * $this->ratios[$this->type];
     }
-
 }

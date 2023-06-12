@@ -16,8 +16,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('playground')" :active="request()->routeIs('playground')">
-                        {{ __('Playground') }}
+                    <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                        {{ __('Admin') }}
                     </x-nav-link>
                     <x-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
                         {{ __('Point of Sale') }}
@@ -79,8 +79,8 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('playground')" :active="request()->routeIs('playground')">
-                {{ __('Playground') }}
+            <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                {{ __('Admin') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
                 {{ __('Point of Sale') }}
