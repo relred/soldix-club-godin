@@ -54,8 +54,8 @@ Route::get('/result', function () {
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/admin', [CorporatesController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.index');
-Route::post('/admin', [CorporatesController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
+Route::get('/admin', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.index');
+Route::post('/admin', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {
