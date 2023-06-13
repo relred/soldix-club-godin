@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +24,10 @@ Route::get('/', function () {
 
 // USER
 Route::get('/dashboard', function () {
+    if (auth()->user()->role_id == Role::IS_ADMIN) {
+        return redirect()->route('admin.index');
+    }
+
     return redirect()->route('wallet');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -48,9 +54,8 @@ Route::get('/result', function () {
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin', [CorporatesController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.index');
+Route::post('/admin', [CorporatesController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {

@@ -28,30 +28,32 @@
                     <th>Usuario</th>
                     <th><span class="float-right">Acciones</span> </th>
                 </x-slot>
-                <tr>
-                    <td>
-                        <div class="ml-3">
-                            <div class="text-sm font-medium text-slate-900">
-                                Juan Sanchez
+                @foreach ($corporates as $corporate)
+                    <tr>
+                        <td>
+                            <div class="ml-3">
+                                <div class="text-sm font-medium text-slate-900">
+                                    {{ $corporate->name }}
+                                </div>
+                                <div class="text-sm text-slate-500 truncate">
+                                    {{ $corporate->username }}
+                                </div>
                             </div>
-                            <div class="text-sm text-slate-500 truncate">
-                                jsanchez
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <button onclick="showModal('profile')" class="flex float-right px-3 py-2 bg-red-500 rounded-md text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-store" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <line x1="3" y1="21" x2="21" y2="21" />
-                                <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
-                                <line x1="5" y1="21" x2="5" y2="10.85" />
-                                <line x1="19" y1="21" x2="19" y2="10.85" />
-                                <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            <button onclick="showModal('profile')" class="flex float-right px-3 py-2 bg-red-500 rounded-md text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-store" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <line x1="3" y1="21" x2="21" y2="21" />
+                                    <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+                                    <line x1="5" y1="21" x2="5" y2="10.85" />
+                                    <line x1="19" y1="21" x2="19" y2="10.85" />
+                                    <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                                </svg>
+                            </button>
+                        </td>    
+                    </tr>
+                @endforeach
 
             </x-bladewind::table>
 
@@ -68,15 +70,19 @@
         cancelButtonLabel="Cerrar"
         >
         <hr class="mb-7 mt-1">
-        <form action="">
+        <form action="{{ route('admin.store') }}" method="POST">
+            @csrf
             <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Hector Sánchez Gomez"  />
-    
+            <x-bladewind::input placeholder="Ej. Hector Sánchez Gomez" name="name" />
+
             <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. hsanchez"  />
+            <x-bladewind::input placeholder="Ej. hsanchez" name="username" />
     
+            <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
+            <x-bladewind::input placeholder="Ej. hsanchez@mail.com" name="email" />
+
             <p class="text-lg ml-2 font-semibold">Contraseña</p>
-            <x-bladewind::input type="password" placeholder="*********"  />
+            <x-bladewind::input type="password" placeholder="*********" name="password" />
     
             <input 
                 type="submit" 

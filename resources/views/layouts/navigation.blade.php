@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin') }}
                     </x-nav-link>
                     <x-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
@@ -79,7 +79,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                 {{ __('Admin') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
