@@ -16,7 +16,7 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role_id != Role::IS_ADMIN) {
+        if (! auth()->check() || auth()->user()->role_id != Role::IS_ADMIN) {
             abort(403, 'Usuario no autorizado');
         }
 

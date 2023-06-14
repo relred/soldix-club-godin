@@ -16,7 +16,7 @@ class IsCashierMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role_id != Role::IS_CASHIER) {
+        if (! auth()->check() || auth()->user()->role_id != Role::IS_CASHIER) {
             abort(403, 'Usuario no autorizado');
         }
 

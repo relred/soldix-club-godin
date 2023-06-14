@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
-class CorporatesController extends Controller
+class AdminsController extends Controller
 {
     public function index(): View
     {
-        $corporates = User::where('role_id', Role::IS_CORPORATE)->get();
+        $admins = User::where('role_id', Role::IS_ADMIN)->get();
 
-        return view('admin.index-corporates', ['corporates' => $corporates]);
+        return view('admin.index-admins', ['admins' => $admins]);
     }
 
     public function store(Request $request)
@@ -31,9 +31,16 @@ class CorporatesController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'role_id' => Role::IS_CORPORATE,
+            'role_id' => Role::IS_ADMIN,
         ]);
 
-        return redirect()->route('admin.corporate.index')->with('status', 'Usuario registrado con éxito');
+        return redirect()->route('admin.index')->with('status', 'Usuario registrado con éxito');
+    }
+    public function destroy($id)
+    {
+        $admin = User::find($id);
+        $admin->delete();
+
+        return redirect()->route('admin.index')->with('status', 'Usuario eliminado con éxito');
     }
 }

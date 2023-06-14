@@ -16,7 +16,7 @@ class IsUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role_id != Role::IS_USER) {
+        if (! auth()->check() || auth()->user()->role_id != Role::IS_USER) {
             abort(403, 'Usuario no autorizado');
         }
 

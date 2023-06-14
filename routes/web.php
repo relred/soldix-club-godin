@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Role;
@@ -54,8 +55,12 @@ Route::get('/result', function () {
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/admin', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.index');
-Route::post('/admin', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
+Route::get('/admin', [AdminsController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.index');
+Route::post('/admin', [AdminsController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
+Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.destroy');
+
+Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.index');
+Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.store');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {

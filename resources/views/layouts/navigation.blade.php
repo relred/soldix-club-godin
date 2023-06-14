@@ -12,16 +12,29 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if (auth()->user()->role_id == App\Models\Role::IS_USER)
+                        <x-nav-link :href="route('wallet')" :active="request()->routeIs('wallet')">
+                            {{ __('Cuponera') }}
+                        </x-nav-link>
+                    @endif
 
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
-                        {{ __('Point of Sale') }}
-                    </x-nav-link>
+                    @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
+                        <x-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
+                            {{ __('Point of Sale') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
+                    @endif
+
+                    @if (auth()->user()->role_id == App\Models\Role::IS_ADMIN)
+                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Admins') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.corporate.index')" :active="request()->routeIs('admin.corporate.index')">
+                            {{ __('Corporativos') }}
+                        </x-nav-link>
+                    @endif
 
                 </div>
             </div>
