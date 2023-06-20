@@ -34,6 +34,14 @@ class CorporatesController extends Controller
             'role_id' => Role::IS_CORPORATE,
         ]);
 
-        return redirect()->route('admin.corporate.index')->with('status', 'Usuario registrado con éxito');
+        return redirect()->route('admin.corporate.index')->with('status', 'Corporativo registrado con éxito');
+    }
+
+    public function destroy($id)
+    {
+        $corporate = User::find($id);
+        $corporate->delete();
+
+        return redirect()->route('admin.corporate.index')->with('status', 'Corporativo eliminado con éxito');
     }
 }

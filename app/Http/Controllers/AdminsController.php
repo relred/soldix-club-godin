@@ -36,6 +36,7 @@ class AdminsController extends Controller
 
         return redirect()->route('admin.index')->with('status', 'Usuario registrado con éxito');
     }
+    
     public function destroy($id)
     {
         $admin = User::find($id);

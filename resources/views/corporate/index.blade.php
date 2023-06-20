@@ -6,9 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-      
         <x-bladewind::centered-content>
-
             <button onclick="showModal('register')" class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus mr-1" width="20" height="25" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -19,7 +17,6 @@
                 Agregar
             </button>
 
-
             <x-bladewind::table
                 hasShadow="true"
                 striped="true">
@@ -28,6 +25,7 @@
                     <th>Usuario</th>
                     <th><span class="float-right">Acciones</span> </th>
                 </x-slot>
+
                 @foreach ($corporates as $corporate)
                     <tr>
                         <td>
@@ -56,10 +54,8 @@
                 @endforeach
 
             </x-bladewind::table>
-
         </x-bladewind::centered-content>
     </div>
-
 
     <x-bladewind::modal
         title="Agregar Nuevo Administrador"
@@ -127,11 +123,7 @@
                     </x-bladewind::list-item>    
                 </x-bladewind::list-view>
             </div>
-
         </div>
 
-
     </x-bladewind::modal>
-
-
 </x-app-layout>

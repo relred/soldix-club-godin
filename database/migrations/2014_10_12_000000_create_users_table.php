@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('password');
+            $table->string('is_local_admin')->nullable();
             $table->string('role_id');
             $table->string('phone')->nullable()->unique();
             $table->string('email')->nullable()->unique();
