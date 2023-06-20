@@ -39,20 +39,22 @@
                             </div>
                         </td>
                         <td>
-                            <form action="{{ route('admin.destroy',[$admin->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="flex float-right px-3 py-2 bg-red-500 rounded-md text-white mx-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M4 7l16 0" />
-                                        <path d="M10 11l0 6" />
-                                        <path d="M14 11l0 6" />
-                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                    </svg>
-                                </button>
-                            </form>
+                            @if (auth()->user()->is_local_admin)
+                                <form action="{{ route('admin.destroy',[$admin->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="flex float-right px-3 py-2 bg-red-500 rounded-md text-white mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M4 7l16 0" />
+                                            <path d="M10 11l0 6" />
+                                            <path d="M14 11l0 6" />
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                        </svg>
+                                    </button>
+                                </form>                                
+                            @endif
                             <button onclick="showModal('profile')" class="flex float-right px-3 py-2 bg-blue-500 rounded-md text-white mx-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -91,7 +93,23 @@
 
             <p class="text-lg ml-2 font-semibold">Contraseña</p>
             <x-bladewind::input type="password" placeholder="*********" name="password" />
-    
+
+            @if (auth()->user()->is_local_admin)
+            <p class="text-lg ml-2 font-semibold">Tipo de usuario</p>
+            <div>
+                <input type="radio" name="is_local_admin" id="admin" class="peer hidden" checked value="0" />
+                <label for="admin" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">
+                  Admin
+                </label>
+            </div>
+          
+            <div>
+                <input type="radio" name="is_local_admin" id="superadmin" class="peer hidden" value="1"/>
+                <label for="superadmin" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">
+                  Super Admin
+                </label>
+            </div>
+            @endif
             <input 
                 type="submit" 
                 class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white" 
