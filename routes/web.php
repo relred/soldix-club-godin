@@ -23,7 +23,6 @@ Route::get('/', function () {
 });
 // END HOME
 
-// USER
 Route::get('/dashboard', function () {
     if (auth()->user()->role_id == Role::IS_ADMIN) {
         return redirect()->route('admin.index');
@@ -32,13 +31,16 @@ Route::get('/dashboard', function () {
     return redirect()->route('wallet');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/wallet', function () {
-    return view('user.index');
-})->middleware(['auth', 'verified'])->name('wallet');
-
-Route::get('/coupon', function () {
-    return view('user.coupon');
-})->middleware(['auth', 'verified'])->name('coupon');
+// USER
+Route::middleware(['auth', 'verified', 'is_user'])->group(function (){
+    Route::get('/wallet', function () {
+        return view('user.index');
+    })->name('wallet');
+    
+    Route::get('/coupon', function () {
+        return view('user.coupon');
+    })->name('coupon');
+});
 // END USER
 
 // CASHIER
