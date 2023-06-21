@@ -12,7 +12,7 @@ class CorporatesController extends Controller
 {
     public function index(): View
     {
-        $corporates = User::where('role_id', Role::IS_CASHIER)->get();
+        $corporates = User::where('role_id', Role::IS_CORPORATE)->get();
 
         return view('admin.index-corporates', ['corporates' => $corporates]);
     }

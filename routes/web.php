@@ -45,9 +45,9 @@ Route::get('/admin', [AdminsController::class, 'index'])->middleware(['auth', 'v
 Route::post('/admin', [AdminsController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
 Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.destroy');
 
-Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.index');
-Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.store');
-Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.destroy');
+Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.index');
+Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.store');
+Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.destroy');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {
