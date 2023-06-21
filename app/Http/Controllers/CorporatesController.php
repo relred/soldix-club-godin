@@ -12,7 +12,7 @@ class CorporatesController extends Controller
 {
     public function index(): View
     {
-        $corporates = User::where('role_id', Role::IS_CORPORATE)->get();
+        $corporates = User::where('role_id', Role::IS_CASHIER)->get();
 
         return view('admin.index-corporates', ['corporates' => $corporates]);
     }
@@ -34,7 +34,7 @@ class CorporatesController extends Controller
             'role_id' => Role::IS_CORPORATE,
         ]);
 
-        return redirect()->route('admin.corporate.index')->with('status', 'Corporativo registrado con éxito');
+        return redirect()->route('admin.corporate.index')->with('status', 'Cajero registrado con éxito');
     }
 
     public function destroy($id)
@@ -42,6 +42,6 @@ class CorporatesController extends Controller
         $corporate = User::find($id);
         $corporate->delete();
 
-        return redirect()->route('admin.corporate.index')->with('status', 'Corporativo eliminado con éxito');
+        return redirect()->route('admin.corporate.index')->with('status', 'Cajero eliminado con éxito');
     }
 }

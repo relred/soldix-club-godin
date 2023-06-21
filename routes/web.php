@@ -3,19 +3,9 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // HOME
 Route::get('/', function () {
@@ -23,13 +13,7 @@ Route::get('/', function () {
 });
 // END HOME
 
-Route::get('/dashboard', function () {
-    if (auth()->user()->role_id == Role::IS_ADMIN) {
-        return redirect()->route('admin.index');
-    }
-
-    return redirect()->route('wallet');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // USER
 Route::middleware(['auth', 'verified', 'is_user'])->group(function (){
@@ -61,9 +45,9 @@ Route::get('/admin', [AdminsController::class, 'index'])->middleware(['auth', 'v
 Route::post('/admin', [AdminsController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
 Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.destroy');
 
-Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.index');
-Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.store');
-Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.destroy');
+Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.index');
+Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.store');
+Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_corporate'])->name('admin.corporate.destroy');
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {

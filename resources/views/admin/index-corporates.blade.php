@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Corporativos') }}
+            {{ __('Tiendas') }}
         </h2>
     </x-slot>
 
@@ -52,7 +52,7 @@
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                 </svg>
                             </button>
-                        </td>    
+                        </td>
                     </tr>
                 @endforeach
 
@@ -62,7 +62,7 @@
 
 
     <x-bladewind::modal
-        title="Agregar Nuevo Administrador"
+        title="Agregar Nuevo Corporativo"
         name="register"
         size="large"
         centerActionButtons="false"
@@ -73,13 +73,13 @@
         <form action="{{ route('admin.corporate.store') }}" method="POST">
             @csrf
             <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Hector Sánchez Gomez" name="name" />
+            <x-bladewind::input placeholder="Ej. Corporativo del norte S.A" name="name" />
 
             <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. hsanchez" name="username" />
+            <x-bladewind::input placeholder="Ej. corpnorte" name="username" />
     
             <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
-            <x-bladewind::input placeholder="Ej. hsanchez@mail.com" name="email" />
+            <x-bladewind::input placeholder="Ej. contacto@corpnorte.com" name="email" />
 
             <p class="text-lg ml-2 font-semibold">Contraseña</p>
             <x-bladewind::input type="password" placeholder="*********" name="password" />
