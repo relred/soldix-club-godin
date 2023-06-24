@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Models\Role;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // HOME
@@ -16,11 +15,11 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // USER
-Route::middleware(['auth', 'verified', 'is_user'])->group(function (){
+Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
     Route::get('/wallet', function () {
         return view('user.index');
     })->name('wallet');
-    
+
     Route::get('/coupon', function () {
         return view('user.coupon');
     })->name('coupon');
@@ -38,14 +37,14 @@ Route::get('/result', function () {
 // END CASHIER
 
 // CORPORATE
-Route::middleware(['auth', 'verified', 'is_corporate'])->group(function (){
+Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
     Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
 });
 // END CORPORATE
 
 // SUPERADMIN
-Route::middleware(['auth', 'verified', 'is_admin'])->group(function (){
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/admin/users', [AdminsController::class, 'index'])->name('admin.index');
     Route::post('/admin/users', [AdminsController::class, 'store'])->name('admin.store');
     Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');

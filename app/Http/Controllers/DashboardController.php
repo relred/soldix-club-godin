@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -20,7 +19,7 @@ class DashboardController extends Controller
         if (auth()->user()->role_id == Role::IS_CORPORATE) {
             return redirect()->route('corporate.index');
         }
-    
+
         return redirect()->route('wallet');
     }
 }
