@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('password');
             $table->string('is_local_admin')->nullable();
-            $table->string('role_id');
             $table->string('phone')->nullable()->unique();
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('role_id');
+            $table->string('corporate_id')->nullable();
+            $table->string('store_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

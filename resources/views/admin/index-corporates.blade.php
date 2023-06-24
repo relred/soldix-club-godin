@@ -35,13 +35,13 @@
                                     {{ $corporate->name }}
                                 </div>
                                 <div class="text-sm text-slate-500 truncate">
-                                    {{ $corporate->username }}
+                                    {{ $corporate->admin_user()->name }}
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="text-base text-slate-900">
-                                {{ $corporate->email }}
+                                {{ $corporate->admin_user()->email }}
                             </div>
                         </td>
                         <td>
@@ -72,8 +72,14 @@
         <hr class="mb-7 mt-1">
         <form action="{{ route('admin.corporate.store') }}" method="POST">
             @csrf
-            <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Corporativo del norte S.A" name="name" />
+            <p class="mb-1">Información de corporativo</p>
+            <p class="text-lg ml-2 font-semibold">Nombre de corporativo</p>
+            <x-bladewind::input placeholder="Ej. Corporativo del norte S.A" name="corporate_name" />
+
+            <hr class="mb-4 mt-6">
+            <p class="mb-1">Infromación de superadministrador</p>
+            <p class="text-lg ml-2 font-semibold">Nombre usuario</p>
+            <x-bladewind::input placeholder="Ej. Jorge sanchez" name="name" />
 
             <p class="text-lg ml-2 font-semibold">Usuario</p>
             <x-bladewind::input placeholder="Ej. corpnorte" name="username" />
