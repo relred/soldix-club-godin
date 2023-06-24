@@ -18,7 +18,7 @@ class DashboardController extends Controller
         }
 
         if (auth()->user()->role_id == Role::IS_CORPORATE) {
-            return redirect()->route('admin.corporate.index');
+            return redirect()->route('corporate.index');
         }
     
         return redirect()->route('wallet');

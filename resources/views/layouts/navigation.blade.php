@@ -25,6 +25,14 @@
                     @endif
 
                     @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
+                        <x-nav-link :href="route('corporate.index')" :active="request()->routeIs('corporate.index')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('corporate.index')" :active="request()->routeIs('corporate.index')">
+                            {{ __('Mis Cupones') }}
+                        </x-nav-link>
+
                     @endif
 
                     @if (auth()->user()->role_id == App\Models\Role::IS_ADMIN)

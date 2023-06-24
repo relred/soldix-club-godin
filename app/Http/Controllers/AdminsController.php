@@ -14,7 +14,7 @@ class AdminsController extends Controller
     {
         $admins = User::where('role_id', Role::IS_ADMIN)->get();
 
-        return view('admin.index-admins', ['admins' => $admins]);
+        return view('admin.admins', ['admins' => $admins]);
     }
 
     public function store(Request $request)

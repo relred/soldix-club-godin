@@ -1,0 +1,3 @@
+index-corporates.blade.php -> CorporatesController::class, 'index'
+    |Al tener un error al registrar un usuario no aparece mensaje de error
+

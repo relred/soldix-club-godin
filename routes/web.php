@@ -36,20 +36,22 @@ Route::get('/result', function () {
     return view('pos.result');
 })->middleware(['auth', 'verified'])->name('result');
 // END CASHIER
-Route::middleware(['auth', 'verified', 'is_admin'])->group(function (){
-    Route::get('/corporate', [CorporateController::class, 'index'])->name('corporate.index');
-});
+
 // CORPORATE
+Route::middleware(['auth', 'verified', 'is_corporate'])->group(function (){
+    Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
+    Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
+});
 // END CORPORATE
 
 // SUPERADMIN
 Route::middleware(['auth', 'verified', 'is_admin'])->group(function (){
-    Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');
-    Route::post('/admin', [AdminsController::class, 'store'])->name('admin.store');
+    Route::get('/admin/users', [AdminsController::class, 'index'])->name('admin.index');
+    Route::post('/admin/users', [AdminsController::class, 'store'])->name('admin.store');
     Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');
 
     Route::get('/admin/corporate', [CorporatesController::class, 'index'])->name('admin.corporate.index');
-    Route::post('/admin/corporate', [CorporatesController::class, 'store'])->name('admin.corporate.store');
+    Route::post('/admin/corporate', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
     Route::delete('/admin/corporate/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
 });
 // END SUPERADMIN
