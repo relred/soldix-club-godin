@@ -36,18 +36,22 @@ Route::get('/result', function () {
     return view('pos.result');
 })->middleware(['auth', 'verified'])->name('result');
 // END CASHIER
-
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function (){
+    Route::get('/corporate', [CorporateController::class, 'index'])->name('corporate.index');
+});
 // CORPORATE
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/admin', [AdminsController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.index');
-Route::post('/admin', [AdminsController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
-Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.destroy');
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function (){
+    Route::get('/admin', [AdminsController::class, 'index'])->name('admin.index');
+    Route::post('/admin', [AdminsController::class, 'store'])->name('admin.store');
+    Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');
 
-Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.index');
-Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.store');
-Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.destroy');
+    Route::get('/admin/corporate', [CorporatesController::class, 'index'])->name('admin.corporate.index');
+    Route::post('/admin/corporate', [CorporatesController::class, 'store'])->name('admin.corporate.store');
+    Route::delete('/admin/corporate/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
+});
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {
