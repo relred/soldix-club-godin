@@ -34,6 +34,6 @@
                 valid="Todos los días">
                 Hamburguesa con papas gratis en la compra de una del mismo tamaño.
             </x-coupon>
-            </div>
+        </div>
     </x-bladewind::centered-content>
 </x-app-layout>

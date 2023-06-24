@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CouponsController;
 use Illuminate\Support\Facades\Route;
 
 // HOME
@@ -40,6 +41,8 @@ Route::get('/result', function () {
 Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
     Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
+    Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
+
 });
 // END CORPORATE
 

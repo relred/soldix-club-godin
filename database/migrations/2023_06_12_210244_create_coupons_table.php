@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
             $table->string('type');
             $table->string('tag');
             $table->string('valid');
             $table->string('expires');
+            $table->string('active');
+            $table->string('target')->nullable();
+            $table->string('parameters');
             $table->timestamps();
         });
     }

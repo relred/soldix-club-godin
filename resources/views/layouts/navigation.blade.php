@@ -29,7 +29,7 @@
                             {{ __('Usuarios') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('corporate.index')" :active="request()->routeIs('corporate.index')">
+                        <x-nav-link :href="route('corporate.coupons')" :active="request()->routeIs('corporate.coupons')">
                             {{ __('Mis Cupones') }}
                         </x-nav-link>
 
