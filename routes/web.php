@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
         return view('user.index');
     })->name('wallet');
 
-    Route::get('/coupon', function () {
+    Route::get('/coupon/{id}', function ($id) {
         return view('user.coupon');
     })->name('coupon');
 });
@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
     Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
+    Route::get('/corporate/coupons/new', [CouponsController::class, 'new'])->name('corporate.coupons.new');
 
 });
 // END CORPORATE

@@ -10,4 +10,9 @@ class CouponsController extends Controller
     {
         return view('admin.coupons');
     }
+
+    public function new()
+    {
+        return view('admin.new-coupon');
+    }
 }

@@ -134,7 +134,7 @@
             <x-bladewind::input placeholder="Ej. corpnorte" name="username" />
     
             <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
-            <x-bladewind::input placeholder="Ej. contacto@corpnorte.com" name="email" />
+            <x-bladewind::input type="email" placeholder="Ej. contacto@corpnorte.com" name="email" />
 
             <p class="text-lg ml-2 font-semibold">Contraseña</p>
             <x-bladewind::input type="password" placeholder="*********" name="password" />

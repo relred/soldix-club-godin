@@ -18,7 +18,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        
+        <!-- Alpine -->
+        <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+
         <!-- Livewire -->
         @livewireStyles
         <style>
@@ -30,6 +32,9 @@
 
             input[type=number] {
                 -moz-appearance:textfield;
+            }
+            [x-cloak] {
+                display: none;
             }
         </style>
     </head>
