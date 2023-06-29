@@ -42,12 +42,13 @@ class CorporatesController extends Controller
 
         $corporate = new Corporate();
         $corporate->name = $request->corporate_name;
+        $corporate->username = $request->corporate_suffix;
         $corporate->save();
 
         if ($corporate->users()->create([
             'name' => $request->name,
             'username' => $request->username,
-            'email' => $request->email,
+            'email' => $request->username . '@' . $request->corporate_suffix . '.corp',
             'phone' => $request->phone,
             'is_local_admin' => 1,
             'password' => Hash::make($request->password),

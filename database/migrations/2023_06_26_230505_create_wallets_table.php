@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('image')->nullable();
+            $table->string('is_public')->default(0);
             $table->string('corporate_id');
+            $table->string('brand_id');
             $table->timestamps();
         });
     }

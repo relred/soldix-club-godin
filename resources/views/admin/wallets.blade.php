@@ -7,11 +7,12 @@
 
     <x-bladewind::centered-content class="pb-12">
 
-        @foreach ($wallets as $wallet)
-            <p>
-                Hola
-            </p>
-        @endforeach
+        <div class="grid sm:grid-cols-2 pb-16">
+            @foreach ($wallets as $wallet)
+                <x-wallet-card
+                    name="{{ $wallet->brand->name }}"/>
+            @endforeach
+        </div>
 
     </x-bladewind::centered-content>
 

@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
-use App\Http\Controllers\CouponsController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WalletsController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\StoresController;
+use App\Http\Controllers\WalletsController;
+use App\Http\Controllers\CouponsController;
 use Illuminate\Support\Facades\Route;
 
 // HOME
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
     Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
     Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
+    Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
+    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
     Route::get('/corporate/coupons/new', [CouponsController::class, 'new'])->name('corporate.coupons.new');
     Route::get('/corporate/coupon-wallets', [WalletsController::class, 'index'])->name('corporate.coupon-wallets');
 });

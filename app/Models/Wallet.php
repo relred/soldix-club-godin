@@ -11,6 +11,14 @@ class Wallet extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'name',
+        'image',
+        'is_public',
+        'brand_id',
+        'corporate_id',
+    ];
+
     public function corporate(): BelongsTo
     {
         return $this->belongsTo(Corporate::class);

@@ -5,7 +5,14 @@
         </h2>
     </x-slot>
 
-    <x-bladewind::centered-content class="pb-12">
+    <x-bladewind::centered-content class="py-12">
+
+        @if (session('status'))
+            <x-bladewind::alert
+                type="success">
+                {{ session('status') }}
+            </x-bladewind::alert>
+        @endif
 
         @if (auth()->user()->is_local_admin)
             <button onclick="showModal('register')" class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
@@ -21,7 +28,6 @@
             <p class="mb-2 text-sm font-semibold text-gray-600">Sólo super admin puede agregar nuevos administradores.</p>
         @endif
 
-
         <x-bladewind::table
             hasShadow="true"
             striped="true">
@@ -31,18 +37,19 @@
                 <th><span class="float-right">Acciones</span> </th>
             </x-slot>
 
-                <tr>
-                    <td>
-                        <div class="ml-3">
-                            <div class="text-sm font-medium text-slate-900">
-                                Lorem
+                @foreach ($brands as $brand)
+                    <tr>
+                        <td>
+                            <div class="ml-3">
+                                <div class="text-lg font-medium text-slate-900">
+                                    {{ $brand->name }}
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        div
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                @endforeach
 
 
         </x-bladewind::table>

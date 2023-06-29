@@ -32,7 +32,11 @@
                         <x-nav-link :href="route('corporate.brands')" :active="request()->routeIs('corporate.brands')">
                             {{ __('Marcas') }}
                         </x-nav-link>
-
+                        
+                        <x-nav-link :href="route('corporate.stores')" :active="request()->routeIs('corporate.stores')">
+                            {{ __('Establecimientos') }}
+                        </x-nav-link>
+                        
                         <x-nav-link :href="route('corporate.coupon-wallets')" :active="request()->routeIs('corporate.coupon-wallets')">
                             {{ __('Cuponeras') }}
                         </x-nav-link>
@@ -82,7 +86,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -135,7 +139,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Cerrar Sesión') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

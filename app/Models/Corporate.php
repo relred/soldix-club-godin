@@ -12,6 +12,7 @@ class Corporate extends Model
 
     protected $fillable = [
         'name',
+        'username',
     ];
 
     public function users(): HasMany
@@ -27,6 +28,11 @@ class Corporate extends Model
     public function brands(): HasMany
     {
         return $this->hasMany(Brand::class);
+    }
+
+    public function stores(): HasMany
+    {
+        return $this->hasMany(Store::class);
     }
 
     public function admin_user()
