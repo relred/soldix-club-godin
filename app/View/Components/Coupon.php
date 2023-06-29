@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class Coupon extends Component
 {
+    public $id;
+
     public $image;
 
     public $type;
@@ -19,11 +21,20 @@ class Coupon extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($image, $type, $tag, $valid)
+    public function __construct($id, $image, $type, $tag, $valid)
     {
+        $this->id = ($id) ?: 'corporate';
         $this->image = $image;
         $this->type = $type;
-        $this->tag = $tag;
+
+        if ($this->type == 'free') {
+            $this->tag = $tag ?: 'Hamburguesa';
+        } elseif ($this->type == '2x1') {
+            $this->tag = $tag ?: '2x1';
+        } else {
+            $this->tag = $tag ?: '10';
+        }
+
         $this->valid = $valid;
     }
 

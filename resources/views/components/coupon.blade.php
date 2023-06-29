@@ -1,5 +1,11 @@
-<a href="{{ route('coupon') }}" class="relative inline-block w-full transform transition-transform duration-300 ease-in-out hover:-translate-y-2">
-    <div class="rounded-lg bg-white p-4 shadow mx-2 my-3">
+<a 
+    @if ($id != 'corporate')
+        href="{{ route('coupon', $id) }}"
+    @else
+        href="#"
+    @endif
+    class="relative inline-block w-full transform transition-transform duration-300 ease-in-out hover:-translate-y-2">
+    <div class="rounded-lg bg-white p-4 shadow-xl mx-2 my-3">
         <div class="relative flex h-52 justify-center overflow-hidden rounded-lg">
 
             <div class="w-full transform transition-transform duration-500 ease-in-out hover:scale-110">
@@ -34,7 +40,6 @@
                             <p class="text-4xl lowercase text-center">{{ $tag }}</p>
                         </div>
                         @break
-
                     @default
                 @endswitch
             </div>

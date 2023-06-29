@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Models\Role;
+use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\StoresController;
+use App\Http\Controllers\WalletsController;
+use App\Http\Controllers\CouponsController;
 use Illuminate\Support\Facades\Route;
 
 // HOME
@@ -16,12 +19,12 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // USER
-Route::middleware(['auth', 'verified', 'is_user'])->group(function (){
+Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
     Route::get('/wallet', function () {
         return view('user.index');
     })->name('wallet');
-    
-    Route::get('/coupon', function () {
+
+    Route::get('/coupon/{id}', function ($id) {
         return view('user.coupon');
     })->name('coupon');
 });
@@ -38,16 +41,29 @@ Route::get('/result', function () {
 // END CASHIER
 
 // CORPORATE
+Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
+    Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
+    Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
+    Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
+    Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
+    Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
+    Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
+    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
+    Route::get('/corporate/coupons/new', [CouponsController::class, 'new'])->name('corporate.coupons.new');
+    Route::get('/corporate/coupon-wallets', [WalletsController::class, 'index'])->name('corporate.coupon-wallets');
+});
 // END CORPORATE
 
 // SUPERADMIN
-Route::get('/admin', [AdminsController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.index');
-Route::post('/admin', [AdminsController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.store');
-Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.destroy');
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
+    Route::get('/admin/users', [AdminsController::class, 'index'])->name('admin.index');
+    Route::post('/admin/users', [AdminsController::class, 'store'])->name('admin.store');
+    Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');
 
-Route::get('/corporate', [CorporatesController::class, 'index'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.index');
-Route::post('/corporate', [CorporatesController::class, 'store'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.store');
-Route::delete('/corporate/{id}', [CorporatesController::class, 'destroy'])->middleware(['auth', 'verified', 'is_admin'])->name('admin.corporate.destroy');
+    Route::get('/admin/corporate', [CorporatesController::class, 'index'])->name('admin.corporate.index');
+    Route::post('/admin/corporate', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
+    Route::delete('/admin/corporate/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
+});
 // END SUPERADMIN
 
 Route::middleware('auth')->group(function () {
