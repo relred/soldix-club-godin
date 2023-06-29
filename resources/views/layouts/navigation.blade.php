@@ -29,8 +29,16 @@
                             {{ __('Usuarios') }}
                         </x-nav-link>
 
+                        <x-nav-link :href="route('corporate.brands')" :active="request()->routeIs('corporate.brands')">
+                            {{ __('Marcas') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('corporate.coupon-wallets')" :active="request()->routeIs('corporate.coupon-wallets')">
+                            {{ __('Cuponeras') }}
+                        </x-nav-link>
+
                         <x-nav-link :href="route('corporate.coupons')" :active="request()->routeIs('corporate.coupons')">
-                            {{ __('Mis Cupones') }}
+                            {{ __('Cupones') }}
                         </x-nav-link>
 
                     @endif

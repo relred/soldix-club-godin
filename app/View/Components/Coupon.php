@@ -21,18 +21,18 @@ class Coupon extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($id ,$image, $type, $tag, $valid)
+    public function __construct($id, $image, $type, $tag, $valid)
     {
-        $this->id = ($id) ?:'corporate';
+        $this->id = ($id) ?: 'corporate';
         $this->image = $image;
         $this->type = $type;
 
         if ($this->type == 'free') {
-            $this->tag = $tag ?:'Hamburguesa';
-        }else if ($this->type == '2x1') {
-            $this->tag = $tag ?:'2x1';
-        }else{
-            $this->tag = $tag ?:'10';
+            $this->tag = $tag ?: 'Hamburguesa';
+        } elseif ($this->type == '2x1') {
+            $this->tag = $tag ?: '2x1';
+        } else {
+            $this->tag = $tag ?: '10';
         }
 
         $this->valid = $valid;

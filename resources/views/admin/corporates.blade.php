@@ -127,7 +127,12 @@
                 <p class="mb-1">Infromación de superadministrador</p>
             @endif
 
-            <p class="text-lg ml-2 font-semibold">Nombre del administrador corporativo</p>
+            @if (auth()->user()->role_id == 3)
+                <p class="text-lg ml-2 font-semibold">Nombre de nuevo usuario</p>
+            @else
+                <p class="text-lg ml-2 font-semibold">Nombre del administrador corporativo</p>
+            @endif
+
             <x-bladewind::input placeholder="Ej. Jorge sanchez" name="name" />
 
             <p class="text-lg ml-2 font-semibold">Usuario</p>

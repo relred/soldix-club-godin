@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('active');
             $table->string('target')->nullable();
             $table->string('parameters');
+            $table->string('wallet_id')->nullable();
             $table->timestamps();
         });
     }

@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Coupon extends Model
+class Brand extends Model
 {
     use HasFactory;
 
-    public function wallet(): BelongsTo
+    protected $fillable = [
+        'name',
+        'image',
+        'corporate_id',
+    ];
+
+    public function corporate(): BelongsTo
     {
-        return $this->belongsTo(Wallet::class);
+        return $this->belongsTo(Corporate::class);
     }
 }

@@ -19,6 +19,16 @@ class Corporate extends Model
         return $this->hasMany(User::class);
     }
 
+    public function wallets(): HasMany
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function brands(): HasMany
+    {
+        return $this->hasMany(Brand::class);
+    }
+
     public function admin_user()
     {
         $admin = $this->users()->where('is_local_admin', 1)->first();
