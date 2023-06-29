@@ -99,7 +99,7 @@
 
 
     <x-bladewind::modal
-        title="Agregar Nuevo Corporativo"
+        title="Agregar Nuevo Usuario Corporativo"
         name="register"
         size="large"
         centerActionButtons="false"
