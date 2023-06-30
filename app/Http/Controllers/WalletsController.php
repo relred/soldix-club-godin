@@ -18,9 +18,19 @@ class WalletsController extends Controller
     public function view($id)
     {
         $wallet = Wallet::findOrFail($id);
+        $coupons = $wallet->coupons()->get();
 
-        return view('admin.wallets.view', ['wallet' => $wallet]);
+        return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons]);
     }
+
+    public function public_view($id)
+    {
+        $wallet = Wallet::findOrFail($id);
+        $coupons = $wallet->coupons()->get();
+
+        return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons]);
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -31,7 +41,7 @@ class WalletsController extends Controller
         }
 
         if ($request->file) {
-            $image = $request->file->storeOnCloudinary('soldix-club');
+            $image = $request->file->storeOnCloudinary('soldix-club/wallets');
             $wallet->image = $image->getPath();
         }
 

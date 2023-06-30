@@ -19,7 +19,7 @@ class BrandsController extends Controller
         $corporate = auth()->user()->corporate;
 
         if ($request->file) {
-            $image = $request->file->storeOnCloudinary('soldix-club');
+            $image = $request->file->storeOnCloudinary('soldix-club/brands');
             $image = $image->getPath();
         }else{
             $image = '';

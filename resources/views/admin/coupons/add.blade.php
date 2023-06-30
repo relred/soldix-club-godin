@@ -7,7 +7,7 @@
 
     <x-bladewind::centered-content class="pb-12">
 
-        <livewire:add-coupon/>
+        <livewire:add-coupon :wallet_id="$id"/>
 
     </x-bladewind::centered-content>
 
