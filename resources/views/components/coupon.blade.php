@@ -9,10 +9,14 @@
         <div class="relative flex h-52 justify-center overflow-hidden rounded-lg">
 
             <div class="w-full transform transition-transform duration-500 ease-in-out hover:scale-110">
-                <img src="{{ $image }}" class="absolute inset-0 min-h-full"/>
+                @if (isset($image))
+                    <img src="{{ $image }}" class="absolute inset-0 min-h-full"/>
+                @else
+                    <img src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1683075785/assets/soldix/dummy%20images/t_ht9sxf.jpg" class="absolute inset-0 min-h-full"/>
+                @endif
             </div>
 
-            <div class="absolute bottom-3 left-5 text-xl text-center text-white font-bold uppercase">{{ $valid }}</div>
+            <div class="absolute bottom-3 left-5 text-xl text-center text-white font-bold uppercase drop-shadow-2xl" style="text-shadow: 0.025em 0 black, 0 0.025em black, -0.025em 0 black, 0 -0.025em black;">{{ $valid }}</div>
 
 
             <div class="absolute uppercase right-0 top-0 z-10 select-none rounded-lg rounded-br-none rounded-tl-none bg-orange-500 px-3 py-2 text-sm font-medium text-white">

@@ -1,24 +1,32 @@
 <div class="w-full max-w-6xl rounded bg-white shadow-xl mt-7 p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
-    <div class="grid w-full place-items-center mb-6">
+    @if ($status)
+        <x-bladewind::alert
+            showCloseIcon="false"
+            type="success">
+            {{ $status }}
+        </x-bladewind::alert>
+    @endif
+
+    <div class="grid w-full place-items-center mt-2 mb-6">
         <p class="text-center mb-3 font-bold text-lg text-neutral-600">Tipo de descuento</p>
         <div class="grid w-[40rem] grid-cols-4 gap-2 rounded-xl bg-gray-200 p-2">
             <div>
-                <input type="radio" id="discount_fixed" value="discount_fixed" wire:model="type" class="peer hidden" checked />
+                <input type="radio" id="discount_fixed" name="type" value="discount_fixed" wire:model="type" class="peer hidden" checked />
                 <label wire:click="unset_tag" for="discount_fixed" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">Fijo</label>
             </div>
     
             <div>
-                <input type="radio" id="discount_percent" value="discount_percent" wire:model="type" class="peer hidden" />
+                <input type="radio" id="discount_percent" name="type" value="discount_percent" wire:model="type" class="peer hidden" />
                 <label wire:click="unset_tag" for="discount_percent" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">Porcentual</label>
             </div>
     
             <div>
-                <input type="radio" id="free" value="free" wire:model="type" class="peer hidden" />
+                <input type="radio" id="free" name="type" value="free" wire:model="type" class="peer hidden" />
                 <label wire:click="unset_tag" for="free" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">Producto Gratis</label>
             </div>
     
             <div>
-                <input type="radio" id="2x1" value="2x1" wire:model="type" class="peer hidden" />
+                <input type="radio" id="2x1" name="type" value="2x1" wire:model="type" class="peer hidden" />
                 <label wire:click="unset_tag" for="2x1" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">2x1</label>
             </div>
         </div>
@@ -28,15 +36,23 @@
         <div class="w-full md:w-1/2 mb-10 md:mb-0">
             <x-coupon
                 id=""
-                image="https://res.cloudinary.com/de6hiq5n4/image/upload/v1683075785/assets/soldix/dummy%20images/t_ht9sxf.jpg"
+                name="{{}}"
+                image="{{ $image }}"
                 type="{{ $type }}"
                 tag="{{ $tag }}"
                 valid="Todos los martes">
-                @if ($title)
-                    {{ $title }}
+                @if ($name)
+                    {{ $name }}
                 @else
-                   Descuento en hamburguesa la compra de un combo especial.
+                    Descuento en hamburguesa la compra de un combo especial.
                 @endif
+                <x-slot name="image">
+                    @if ($image)
+                        {{ $image->temporaryUrl() }}
+                    @else
+                        {{ 'https://res.cloudinary.com/de6hiq5n4/image/upload/v1683075785/assets/soldix/dummy%20images/t_ht9sxf.jpg' }}
+                    @endif
+                </x-slot>
             </x-coupon>
         </div>
         <div class="w-full md:w-1/2 px-10">
@@ -47,7 +63,7 @@
                     id="name"
                     placeholder="Título"
                     class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    wire:model.debounce.5ms="title"
+                    wire:model.debounce.5ms="name"
                 />
 
                 @if ($type == '2x1')
@@ -55,6 +71,7 @@
                         <input
                             type="text"
                             id="tag"
+                            name="tag"
                             class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             wire:model.debounce.5ms="first2x1"
                         />
@@ -62,6 +79,7 @@
                         <input
                             type="text"
                             id="tag"
+                            name="tag"
                             class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             wire:model.debounce.5ms="second2x1"
                         />
@@ -70,6 +88,7 @@
                     <input
                         type="text"
                         id="tag"
+                        name="tag"
                         placeholder="Producto"
                         class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         wire:model.debounce.5ms="tag"
@@ -78,6 +97,7 @@
                     <input
                         type="number"
                         id="tag"
+                        name="tag"
                         placeholder="Descuento en pesos"
                         class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] text-center outline-none focus:border-[#6A64F1] focus:shadow-md"
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
@@ -87,6 +107,7 @@
                     <input
                         type="number"
                         id="tag"
+                        name="tag"
                         placeholder="Porcentaje de descuento"
                         class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium text-[#6B7280] text-center outline-none focus:border-[#6A64F1] focus:shadow-md"
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
@@ -95,7 +116,7 @@
                 @endif
     
                 <div class="mb-0.5">
-                    <input type="file" name="file" id="file" class="sr-only" />
+                    <input type="file" wire:model="image" id="file" class="sr-only" />
                     <label
                       for="file"
                       class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] px-12 text-center"
@@ -117,6 +138,11 @@
                 <input type="date" name="campain_finishes" id="campain_finishes">
             </div>
 
-        </div>                
+            <input
+                wire:click="store({{ $wallet_id }})"
+                type="submit" 
+                class="flex w-full my-5 px-3 py-2 bg-red-500 rounded-md text-white" 
+                value="Registrar">
+        </div>
     </div>
 </div>

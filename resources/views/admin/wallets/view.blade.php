@@ -72,7 +72,7 @@
                         value="Actualizar">
                 </form>
             </div>
-            <button type='button' class='break-inside bg-red-500 rounded-xl p-4 mb-4 w-full'>
+            <a href="{{ route('corporate.wallets.coupon.add', $wallet->id) }}" class='break-inside bg-red-500 rounded-xl p-4 mb-4 w-full'>
                 <div class='flex items-center space-x-4'>
                   <svg width='32' height='32' viewBox='0 0 38 38' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <path
@@ -81,7 +81,22 @@
                   </svg>
                   <span class='text-base font-medium text-white'>Agregar cupón nuevo</span>
                 </div>
-            </button>
+            </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 pb-16">
+            @foreach ($coupons as $coupon)
+                <x-coupon
+                    id=""
+                    type="{{ $coupon->type }}"
+                    tag="{{ $coupon->tag }}"
+                    valid="Todos los martes">
+                    <x-slot name="image">
+                        {{ $coupon->image }}
+                    </x-slot>
+                    {{ $coupon->name }}
+                </x-coupon>                
+            @endforeach
         </div>
 
     </x-bladewind::centered-content>

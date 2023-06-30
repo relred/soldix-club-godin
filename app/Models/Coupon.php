@@ -10,6 +10,21 @@ class Coupon extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+        'description',
+        'type',
+        'tag',
+        'image',
+        'valid',
+        'campain_starts',
+        'campain_finishes',
+        'active',
+        'target',
+        'parameters',
+        'wallet_id',
+    ];
+
     public function wallet(): BelongsTo
     {
         return $this->belongsTo(Wallet::class);
