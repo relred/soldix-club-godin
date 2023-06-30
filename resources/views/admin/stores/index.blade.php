@@ -74,7 +74,7 @@
     </x-bladewind::centered-content>
 
     <x-bladewind::modal
-        title="Agregar Nuevo Administrador"
+        title="Agregar Nuevo Establecimiento"
         name="register"
         size="large"
         centerActionButtons="false"

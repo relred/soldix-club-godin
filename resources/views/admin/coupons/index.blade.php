@@ -14,7 +14,7 @@
             </x-bladewind::alert>
         @endif
 
-        <a href="{{ route('corporate.coupons.new') }}" class="flex mb-5 ml-2 px-3 py-2 w-44 bg-red-500 rounded-md text-white mx-auto">
+        <a href="{{ route('corporate.coupons.add') }}" class="flex mb-5 ml-2 px-3 py-2 w-44 bg-red-500 rounded-md text-white mx-auto">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus mr-0 mx-auto" width="20" height="25" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <circle cx="12" cy="12" r="9" />

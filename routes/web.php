@@ -44,13 +44,15 @@ Route::get('/result', function () {
 Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
     Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
-    Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
     Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
     Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
     Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
     Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
-    Route::get('/corporate/coupons/new', [CouponsController::class, 'new'])->name('corporate.coupons.new');
-    Route::get('/corporate/coupon-wallets', [WalletsController::class, 'index'])->name('corporate.coupon-wallets');
+    Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
+    Route::get('/corporate/coupons/add', [CouponsController::class, 'add'])->name('corporate.coupons.add');
+    Route::get('/corporate/wallets', [WalletsController::class, 'index'])->name('corporate.wallets');
+    Route::get('/corporate/wallets/{id}', [WalletsController::class, 'view'])->name('corporate.wallets.view');
+    Route::post('/corporate/wallets/{id}', [WalletsController::class, 'update'])->name('corporate.wallets.update');
 });
 // END CORPORATE
 

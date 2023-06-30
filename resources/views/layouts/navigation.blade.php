@@ -37,7 +37,7 @@
                             {{ __('Establecimientos') }}
                         </x-nav-link>
                         
-                        <x-nav-link :href="route('corporate.coupon-wallets')" :active="request()->routeIs('corporate.coupon-wallets')">
+                        <x-nav-link :href="route('corporate.wallets')" :active="request()->routeIs('corporate.wallets')">
                             {{ __('Cuponeras') }}
                         </x-nav-link>
 

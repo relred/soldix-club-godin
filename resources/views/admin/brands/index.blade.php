@@ -23,7 +23,7 @@
                     <line x1="12" y1="9" x2="12" y2="15" />
                 </svg>
                 Agregar
-            </button>                
+            </button>
         @else
             <p class="mb-2 text-sm font-semibold text-gray-600">Sólo super admin puede agregar nuevos administradores.</p>
         @endif
@@ -33,12 +33,20 @@
             striped="true">
 
             <x-slot name="header">
+                <th></th>
                 <th>Marca</th>
                 <th><span class="float-right">Acciones</span> </th>
             </x-slot>
 
                 @foreach ($brands as $brand)
                     <tr>
+                        <td class="max-w-min">
+                            <div>
+                                @if ($brand->image)
+                                    <img src="{{ $brand->image }}" width="100px" alt="{{ $brand->name }}">
+                                @endif
+                            </div>
+                        </td>
                         <td>
                             <div class="ml-3">
                                 <div class="text-lg font-medium text-slate-900">
@@ -57,7 +65,7 @@
 
     </x-bladewind::centered-content>
     <x-bladewind::modal
-    title="Agregar Nuevo Administrador"
+    title="Agregar Nueva Marca"
     name="register"
     size="large"
     centerActionButtons="false"
@@ -65,10 +73,27 @@
     cancelButtonLabel="Cerrar"
     >
     <hr class="mb-7 mt-1">
-    <form action="{{ route('corporate.brands.store') }}" method="POST">
+    <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <p class="text-lg ml-2 font-semibold">Nombre de la Marca</p>
+
+        <p class="text-lg ml-2 mb-2 font-semibold">Nombre de la Marca</p>
         <x-bladewind::input placeholder="Ej. Súper Mexicali" name="name" />
+
+        <div class="mb-0.5">
+            <p class="text-lg ml-2 mb-2 font-semibold">Imagen (Opcional)</p>
+
+            <input type="file" name="file" id="file" class="sr-only" />
+            <label
+                for="file"
+                class="relative flex min-h-[200px] bg-gray-50 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] px-12 text-center"
+                >
+            <div>
+                <span class="mb-2 block text-xl font-semibold text-[#07074D] rounded border border-[#e0e0e0] py-2 px-7">
+                    Seleccione una imagen
+                </span>
+            </div>
+            </label>
+        </div>
 
         <input 
             type="submit" 
