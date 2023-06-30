@@ -10,8 +10,6 @@ class Coupon extends Component
 {
     public $id;
 
-    public $image;
-
     public $type;
 
     public $tag;
@@ -21,10 +19,9 @@ class Coupon extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($id, $image, $type, $tag, $valid)
+    public function __construct($id, $type, $tag, $valid)
     {
         $this->id = ($id) ?: 'corporate';
-        $this->image = $image;
         $this->type = $type;
 
         if ($this->type == 'free') {
