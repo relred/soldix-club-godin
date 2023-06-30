@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function redirect()
     {
         if (auth()->user()->role_id == Role::IS_USER) {
-            return redirect()->route('wallet');
+            return redirect()->route('public.wallets.index');
         }
 
         if (auth()->user()->role_id == Role::IS_ADMIN) {

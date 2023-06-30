@@ -13,9 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if (auth()->user()->role_id == App\Models\Role::IS_USER)
-                        <x-nav-link :href="route('wallet')" :active="request()->routeIs('wallet')">
-                            {{ __('Cuponera') }}
+                        <x-nav-link :href="route('public.wallets.index')" :active="request()->routeIs('public.wallets.index')">
+                            {{ __('Explorar') }}
                         </x-nav-link>
+
+{{--                         <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            {{ __('Cuponera') }}
+                        </x-nav-link> --}}
                     @endif
 
                     @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
