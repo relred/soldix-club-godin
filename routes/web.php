@@ -20,14 +20,16 @@ Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware([
 
 // USER
 Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
-    Route::get('/wallet', function () {
+    Route::get('/home', function () {
         return view('user.index');
-    })->name('wallet');
+    })->name('home');
 
-    Route::get('/coupon/{id}', function ($id) {
-        return view('user.coupon');
-    })->name('coupon');
+    Route::get('/coupon/{id}', [CouponsController::class, 'view'])->name('coupon');
+
+    Route::get('/wallets', [WalletsController::class, 'public_index'])->name('public.wallets.index');
+    Route::get('/wallets/{id}', [WalletsController::class, 'public_view'])->name('public.wallets.view');
 });
+
 // END USER
 
 // CASHIER
@@ -54,7 +56,6 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/wallets/{id}', [WalletsController::class, 'view'])->name('corporate.wallets.view');
     Route::post('/corporate/wallets/{id}', [WalletsController::class, 'update'])->name('corporate.wallets.update');
     Route::get('/corporate/wallets/{id}/add', [CouponsController::class, 'add_to_wallet'])->name('corporate.wallets.coupon.add');
-
 });
 // END CORPORATE
 

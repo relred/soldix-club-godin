@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Coupon;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 
@@ -9,6 +11,13 @@ class CouponsController extends Controller
     public function index()
     {
         return view('admin.coupons.index');
+    }
+
+    public function view($id)
+    {
+        $coupon = Coupon::find($id);
+        
+        return view('user.coupon', ['coupon' => $coupon]);
     }
 
     public function add()

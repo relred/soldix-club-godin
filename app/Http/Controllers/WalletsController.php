@@ -23,14 +23,20 @@ class WalletsController extends Controller
         return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons]);
     }
 
+    public function public_index()
+    {
+        $wallets = Wallet::all();
+
+        return view('user.wallets', ['wallets' => $wallets]);
+    }
+
     public function public_view($id)
     {
         $wallet = Wallet::findOrFail($id);
         $coupons = $wallet->coupons()->get();
 
-        return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons]);
+        return view('user.wallet.view', ['wallet' => $wallet, 'coupons' => $coupons]);
     }
-
 
     public function update(Request $request, $id)
     {
