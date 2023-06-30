@@ -9,8 +9,11 @@
 
         <div class="grid sm:grid-cols-2 pb-16">
             @foreach ($wallets as $wallet)
-                <x-wallet-card
-                    name="{{ $wallet->brand->name }}"/>
+                <a href="{{ route('corporate.wallets.view', $wallet->id) }}">
+                    <x-wallet-card
+                        image="{{ $wallet->image }}"
+                        name="{{ $wallet->brand->name }}"/>
+                </a>
             @endforeach
         </div>
 
