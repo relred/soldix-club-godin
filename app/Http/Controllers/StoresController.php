@@ -19,8 +19,8 @@ class StoresController extends Controller
         $stores = auth()->user()->corporate()->first()->stores()->get();
 
         return (isset($stores))
-            ? view('admin.stores', ['stores' => $stores, 'brands' => $brands])
-            : view('admin.stores', ['stores' => 0]);
+            ? view('admin.stores.index', ['stores' => $stores, 'brands' => $brands])
+            : view('admin.stores.index', ['stores' => 0]);
     }
 
     public function store(Request $request)

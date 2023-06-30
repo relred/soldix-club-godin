@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Corporate;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BrandsController extends Controller
 {
@@ -11,20 +11,28 @@ class BrandsController extends Controller
     {
         $brands = auth()->user()->corporate()->first()->brands()->get();
 
-        return view('admin.brands', ['brands' => $brands]);
+        return view('admin.brands.index', ['brands' => $brands]);
     }
 
     public function store(Request $request)
     {
         $corporate = auth()->user()->corporate;
 
+        if ($request->file) {
+            $image = $request->file->storeOnCloudinary('soldix-club');
+            $image = $image->getPath();
+        }else{
+            $image = '';
+        }
+
         $brand = $corporate->brands()->create([
             'name' => $request->name, 
-            'image' => '', 
+            'image' => $image, 
         ]);
 
         $brand->wallet()->create([
-            'corporate_id' => $corporate->first()->id,
+            'corporate_id' => auth()->user()->corporate()->first()->id,
+            'image' => $image,
         ]);
 
         return redirect()->route('corporate.brands')->with('status', 'Marca registrada con éxito');

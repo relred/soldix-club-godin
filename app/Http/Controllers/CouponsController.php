@@ -6,11 +6,11 @@ class CouponsController extends Controller
 {
     public function index()
     {
-        return view('admin.coupons');
+        return view('admin.coupons.index');
     }
 
-    public function new()
+    public function add()
     {
-        return view('admin.new-coupon');
+        return view('admin.coupons.add');
     }
 }
