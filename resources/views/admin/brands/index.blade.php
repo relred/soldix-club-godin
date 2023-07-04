@@ -9,6 +9,7 @@
 
         @if (session('status'))
             <x-bladewind::alert
+                class="mb-4"
                 type="success">
                 {{ session('status') }}
             </x-bladewind::alert>

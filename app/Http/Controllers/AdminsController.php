@@ -19,25 +19,28 @@ class AdminsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:100',
-            'username' => 'required|max:20',
-            'phone' => 'unique',
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'role_id' => Role::IS_ADMIN,
-            'is_local_admin' => (isset($request->is_local_admin) && auth()->user()->is_local_admin)
-                                    ? $request->is_local_admin
-                                    : 0,
-        ]);
-
-        return redirect()->route('admin.index')->with('status', 'Usuario registrado con éxito');
+        if (
+            User::create([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'role_id' => Role::IS_ADMIN,
+                'is_local_admin' => (isset($request->is_local_admin) && auth()->user()->is_local_admin)
+                                        ? $request->is_local_admin
+                                        : 0,
+            ])
+        ) {
+            return redirect()
+                ->route('admin.index')
+                ->with('status', 'Usuario registrado con éxito');
+        }else{
+            return redirect()
+                ->route('admin.corporate.index')
+                ->with('input_error', 'Error al registrar el usuario.')
+                ->withInput();
+        }
     }
 
     public function destroy($id)

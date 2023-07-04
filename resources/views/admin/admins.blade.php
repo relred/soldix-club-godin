@@ -7,12 +7,7 @@
 
     <x-bladewind::centered-content class="py-12">
 
-        @if (session('status'))
-            <x-bladewind::alert
-                type="success">
-                {{ session('status') }}
-            </x-bladewind::alert>
-        @endif
+        <x-input-alerts/>
 
         @if (auth()->user()->is_local_admin)
             <button onclick="showModal('register')" class="flex mb-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">

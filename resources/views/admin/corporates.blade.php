@@ -7,12 +7,7 @@
 
     <x-bladewind::centered-content class="py-12">
 
-        @if (session('status'))
-            <x-bladewind::alert
-                type="success">
-                {{ session('status') }}
-            </x-bladewind::alert>
-        @endif
+        <x-input-alerts/>
 
         <button onclick="showModal('register')" class="flex mb-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus mr-1" width="20" height="25" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -118,33 +113,67 @@
 
             @if (auth()->user()->role_id == 4)
                 <p class="mb-3 text-lg">Información de corporativo</p>
-                <p class="text-lg ml-2 font-semibold">Nombre de corporativo</p>
-                <x-bladewind::input placeholder="Ej. Corporativo del norte S.A" name="corporate_name" />
+                <div class="mb-3">
+                    <label class="block">
+                        <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
+                            Nombre de corporativo
+                        </span>
+                        <input type="text" name="corporate_name" placeholder="Ej. Corporativo del norte S.A" value="{{ old('corporate_name') }}" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
+                    </label>
+                </div>
 
-                <p class="text-lg ml-2 font-semibold">Identificador corporativo</p>
-                <x-bladewind::input placeholder="Ej. corpnorte" name="corporate_suffix" />
+                <div class="mb-3">
+                    <label class="block">
+                        <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
+                            Identificador corporativo
+                        </span>
+                        <input type="text" name="corporate_suffix" placeholder="Ej. corpnorte" pattern="[a-z0-9]{3,12}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres y un máximo de 12" required
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
+                    </label>
+                </div>
                 
                 <hr class="mb-4 mt-6">
 
                 <p class="mb-3 text-lg">Información de administrador corporativo</p>
             @endif
 
-            @if (auth()->user()->role_id == 3)
-                <p class="text-lg ml-2 font-semibold">Nombre de nuevo usuario</p>
-            @else
-                <p class="text-lg ml-2 font-semibold">Nombre del administrador corporativo</p>
-            @endif
+            <div class="mb-3">
+                <label class="block">
+                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
+                        @if (auth()->user()->role_id == 3)
+                            Nombre de nuevo usuario
+                        @else
+                            Nombre del administrador corporativo
+                        @endif
+                    </span>
+                    <input type="text" name="name" placeholder="Ej. Jorge sanchez" value="{{ old('name') }}" required
+                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
+                </label>
+            </div>
 
-            <x-bladewind::input placeholder="Ej. Jorge sanchez" name="name" />
-
-            <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. jsanchez" name="username" />
+            <div class="mb-3">
+                <label class="block">
+                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
+                        Usuario
+                    </span>
+                    <input type="text" name="username" pattern="[a-z0-9]{3,16}" placeholder="Ej. jsanchez" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" required
+                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
+                </label>
+            </div>
     
 {{--             <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
             <x-bladewind::input type="email" placeholder="Ej. contacto@corpnorte.com" name="email" /> --}}
 
-            <p class="text-lg ml-2 font-semibold">Contraseña</p>
-            <x-bladewind::input type="password" placeholder="*********" name="password" viewable="true" />
+            <div class="mb-3">
+                <label class="block">
+                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
+                        Contraseña
+                    </span>
+                    <input type="password" name="password" placeholder="*********" required
+                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
+                </label>
+            </div>
     
             <input 
                 type="submit" 
