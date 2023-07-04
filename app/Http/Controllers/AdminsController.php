@@ -19,11 +19,21 @@ class AdminsController extends Controller
 
     public function store(Request $request)
     {
+
+        $email = $request->username . '@soldix.com';
+
+        if ($userconflict = User::where('email', $email)->first()) {
+            return redirect()
+                ->route('admin.index')
+                ->with('input_error', 'El usuario '. $userconflict->name . ' ya está registrado bajo el nombre de usuario "' . $request->username . '".')
+                ->withInput();
+        }
+
         if (
             User::create([
                 'name' => $request->name,
                 'username' => $request->username,
-                'email' => $request->email,
+                'email' => $email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
                 'role_id' => Role::IS_ADMIN,
@@ -37,7 +47,7 @@ class AdminsController extends Controller
                 ->with('status', 'Usuario registrado con éxito');
         }else{
             return redirect()
-                ->route('admin.corporate.index')
+                ->route('admin.index')
                 ->with('input_error', 'Error al registrar el usuario.')
                 ->withInput();
         }

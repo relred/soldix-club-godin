@@ -88,17 +88,17 @@
         <hr class="mb-7 mt-1">
         <form action="{{ route('admin.store') }}" method="POST">
             @csrf
-            <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Hector Sánchez Gomez" name="name" />
+            <x-input-block type="text" name="name" placeholder="Ej. Hector Sánchez Gomez" value="{{ old('name') }}" required>
+                Nombre 
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. hsanchez" name="username" />
-    
-            <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
-            <x-bladewind::input placeholder="Ej. hsanchez@mail.com" name="email" />
+            <x-input-block type="text" name="username" placeholder="Ej. hsanchez" pattern="[a-z0-9]{3,16}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" value="{{ old('username') }}" required>
+                Usuario 
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Contraseña</p>
-            <x-bladewind::input type="password" placeholder="*********" name="password" />
+            <x-input-block type="password" name="password" placeholder="*********" required>
+                Contraseña 
+            </x-input-block>
 
             @if (auth()->user()->is_local_admin)
             <p class="text-lg ml-2 font-semibold">Tipo de usuario</p>
@@ -116,10 +116,12 @@
                 </label>
             </div>
             @endif
+
             <input 
                 type="submit" 
                 class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white" 
                 value="Registrar">
+
         </form>
     </x-bladewind::modal>
 

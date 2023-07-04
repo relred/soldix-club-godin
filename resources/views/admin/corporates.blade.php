@@ -113,67 +113,35 @@
 
             @if (auth()->user()->role_id == 4)
                 <p class="mb-3 text-lg">Información de corporativo</p>
-                <div class="mb-3">
-                    <label class="block">
-                        <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
-                            Nombre de corporativo
-                        </span>
-                        <input type="text" name="corporate_name" placeholder="Ej. Corporativo del norte S.A" value="{{ old('corporate_name') }}" required
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
-                    </label>
-                </div>
 
-                <div class="mb-3">
-                    <label class="block">
-                        <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
-                            Identificador corporativo
-                        </span>
-                        <input type="text" name="corporate_suffix" placeholder="Ej. corpnorte" pattern="[a-z0-9]{3,12}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres y un máximo de 12" required
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
-                    </label>
-                </div>
+                <x-input-block type="text" name="corporate_name" placeholder="Ej. Corporativo del norte S.A" value="{{ old('corporate_name') }}" required>
+                    Nombre de corporativo
+                </x-input-block>
+
+                <x-input-block type="text" name="corporate_suffix" placeholder="Ej. corpnorte" pattern="[a-z0-9]{3,12}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres y un máximo de 12" required>
+                    Identificador corporativo
+                </x-input-block>
                 
                 <hr class="mb-4 mt-6">
 
                 <p class="mb-3 text-lg">Información de administrador corporativo</p>
             @endif
 
-            <div class="mb-3">
-                <label class="block">
-                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
-                        @if (auth()->user()->role_id == 3)
-                            Nombre de nuevo usuario
-                        @else
-                            Nombre del administrador corporativo
-                        @endif
-                    </span>
-                    <input type="text" name="name" placeholder="Ej. Jorge sanchez" value="{{ old('name') }}" required
-                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
-                </label>
-            </div>
+            <x-input-block type="text" name="name" placeholder="Ej. Jorge sanchez" value="{{ old('name') }}" required>
+                @if (auth()->user()->role_id == 3)
+                    Nombre de nuevo usuario
+                @else
+                    Nombre del administrador corporativo
+                @endif
+            </x-input-block>
 
-            <div class="mb-3">
-                <label class="block">
-                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
-                        Usuario
-                    </span>
-                    <input type="text" name="username" pattern="[a-z0-9]{3,16}" placeholder="Ej. jsanchez" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" required
-                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
-                </label>
-            </div>
-    
-{{--             <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
-            <x-bladewind::input type="email" placeholder="Ej. contacto@corpnorte.com" name="email" /> --}}
+            <x-input-block type="text" name="username" placeholder="Ej. jsanchez" pattern="[a-z0-9]{3,16}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" required>
+                Usuario
+            </x-input-block>
 
-            <div class="mb-3">
-                <label class="block">
-                    <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-lg ml-2 font-semibold">
-                        Contraseña
-                    </span>
-                    <input type="password" name="password" placeholder="*********" required
-                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-sm text-lg font-semibold sm:text-sm focus:ring-1"/>
-                </label>
-            </div>
+            <x-input-block type="password" name="password" placeholder="*********" required>
+                Contraseña
+            </x-input-block>
     
             <input 
                 type="submit" 
