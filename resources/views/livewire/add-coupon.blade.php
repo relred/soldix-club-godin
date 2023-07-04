@@ -1,6 +1,3 @@
-
-<a class="flex w-24 mt-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets.view', $wallet_id) }}">← Volver</a>
-
 <div class="w-full max-w-6xl rounded bg-white shadow-xl mt-5 p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
     @if ($status)
         <x-bladewind::alert
