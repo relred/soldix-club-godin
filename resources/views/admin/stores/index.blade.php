@@ -7,12 +7,7 @@
 
     <x-bladewind::centered-content class="py-12">
 
-        @if (session('status'))
-            <x-bladewind::alert
-                type="success">
-                {{ session('status') }}
-            </x-bladewind::alert>
-        @endif
+        <x-input-alerts/>
 
         @if (auth()->user()->is_local_admin)
             <button onclick="showModal('register')" class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
@@ -96,24 +91,29 @@
                 @endif
             </select>
 
-            <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Sucursal Rio Nuevo" name="store" required="true"/>
+            <x-input-block type="text" name="store" placeholder="Ej. Sucursal Rio Nuevo" value="{{ old('store') }}" required>
+                    Nombre de Sucursal
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Dirección (Opcional)</p>
-            <x-bladewind::input placeholder="Ej. Calle Rio Nuevo #23, Col. Carbajal" name="address" class="mb-4" required="true"/>
+            <x-input-block type="text" name="address" placeholder="Ej. Calle Rio Nuevo #23, Col. Carbajal" value="{{ old('address') }}">
+                Dirección (Opcional)
+            </x-input-block>
 
             <hr>
 
             <p class="mb-3 mt-4 text-lg">Administrador de Establecimiento</p>
 
-            <p class="text-lg ml-2 font-semibold">Nombre</p>
-            <x-bladewind::input placeholder="Ej. Juan Sanchez" name="name" required="true"/>
+            <x-input-block type="text" name="name" placeholder="Ej. Juan Sanchez" value="{{ old('name') }}" required>
+                Nombre
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. jsanchez" name="username" required="true"/>
+            <x-input-block type="text" name="username" placeholder="Ej. jsanchez" pattern="[a-z0-9]{3,16}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" value="{{ old('username') }}" required>
+                Usuario
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Contraseña</p>
-            <x-bladewind::input type="password" placeholder="*********" name="password" viewable="true" required="true"/>
+            <x-input-block type="password" name="password" placeholder="*********" required>
+                Contraseña
+            </x-input-block>
 
             <input 
                 type="submit" 

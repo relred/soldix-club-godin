@@ -1,4 +1,7 @@
-<div class="w-full max-w-6xl rounded bg-white shadow-xl mt-7 p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
+
+<a class="flex w-24 mt-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets.view', $wallet_id) }}">← Volver</a>
+
+<div class="w-full max-w-6xl rounded bg-white shadow-xl mt-5 p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
     @if ($status)
         <x-bladewind::alert
             showCloseIcon="false"
@@ -36,7 +39,6 @@
         <div class="w-full md:w-1/2 mb-10 md:mb-0">
             <x-coupon
                 id=""
-                name="{{}}"
                 image="{{ $image }}"
                 type="{{ $type }}"
                 tag="{{ $tag }}"
@@ -140,9 +142,15 @@
 
             <input
                 wire:click="store({{ $wallet_id }})"
-                type="submit" 
-                class="flex w-full my-5 px-3 py-2 bg-red-500 rounded-md text-white" 
+                wire:loading.remove
+                wire:target="image, store"
+                type="submit"
+                class="flex w-full my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" 
                 value="Registrar">
+
+            <div class="text-center my-5" wire:loading.block wire:target="image, store">
+                <x-bladewind::spinner class="text-center" size="medium"  />
+            </div>
         </div>
     </div>
 </div>
