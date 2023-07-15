@@ -42,7 +42,7 @@ class CouponsController extends Controller
             'description' => '',
             'type' => $request->type,
             'tag' => $request->tag,
-            'valid' => 1,
+//            'validity' => ,
             'campain_starts' => '',
             'campain_ends' => '',
             'active' => 0,

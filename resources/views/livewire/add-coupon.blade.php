@@ -39,7 +39,7 @@
                 image="{{ $image }}"
                 type="{{ $type }}"
                 tag="{{ $tag }}"
-                valid="Todos los martes">
+                valid="Días de validez en interior">
                 @if ($name)
                     {{ $name }}
                 @else

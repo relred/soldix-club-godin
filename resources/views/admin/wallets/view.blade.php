@@ -33,7 +33,38 @@
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full px-6">
                                 <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                                    Cuponera soldix club.
+                                    <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                                        Cuponera soldix club.
+                                    </p>
+    
+                                    <span class="mr-2 text-lg">Visibilidad:</span> 
+                                    @if ($wallet->is_public)
+                                        <div class="flex justify-center">
+                                            <span class="text-lg mr-1">
+                                                Pública
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                            </svg>
+                                        </div>
+                                    @else
+                                        <div class="flex justify-center">
+                                            <span class="text-lg mr-1">
+                                                Oculta
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-access" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+                                                <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+                                                <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+                                                <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+                                                <path d="M8 11m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" />
+                                                <path d="M10 11v-2a2 2 0 1 1 4 0v2" />
+                                            </svg>
+                                        </div>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -58,13 +89,23 @@
                 <hr class="my-3">
                 <form action="{{ route('corporate.wallets.update', $wallet->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <p class="text-lg ml-2 mb-2 font-semibold">Nombre de la Cuponera (Opcional)</p>
-                    <x-bladewind::input placeholder="Ej. Súper Mexicali" name="name" />
-            
+                    <x-input-block type="text" placeholder="Ej. Súper Mexicali" name="name">
+                        Nombre de la Cuponera (Opcional)
+                    </x-input-block>
+
+                    <div class="mb-2">
+                        <p class="text-lg ml-2 mb-2 font-semibold">Visibilidad (Opcional)</p>
+                        <input type="radio" id="true" name="is_public" value="true">
+                        <label for="true" class="mr-4">Pública</label>
+                        <input type="radio" id="false" name="is_public" value="false">
+                        <label for="false">Oculta</label>
+                    </div>
+
                     <div class="mb-0.5">
                         <p class="text-lg ml-2 mb-2 font-semibold">Imagen (Opcional)</p>
                         <input class="block w-full text-sm text-gray-900" id="file" name="file" type="file">
                     </div>
+
 
                     <input 
                         type="submit" 

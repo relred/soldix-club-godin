@@ -27,6 +27,8 @@ class AddCoupon extends Component
 
     public $status;
 
+    public $validity = [];
+
     public function render()
     {
         if ($this->type == '2x1') {
@@ -54,7 +56,7 @@ class AddCoupon extends Component
                 'type' => $this->type,
                 'tag' => $this->tag,
                 'image' => $imageCloud,
-                'valid' => 1,
+//                'validity' => ,
                 'description' => '',
                 'campain_starts' => '',
                 'campain_finishes' => '',

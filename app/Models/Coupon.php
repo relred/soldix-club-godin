@@ -16,7 +16,7 @@ class Coupon extends Model
         'type',
         'tag',
         'image',
-        'valid',
+        'validity',
         'campain_starts',
         'campain_finishes',
         'active',

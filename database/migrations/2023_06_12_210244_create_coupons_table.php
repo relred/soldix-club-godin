@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('type');
             $table->string('tag');
-            $table->string('valid');
+            $table->string('validity')->nullable();
             $table->string('campain_starts');
             $table->string('campain_finishes');
             $table->string('active');
