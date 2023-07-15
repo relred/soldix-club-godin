@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coupon;
 use App\Models\Wallet;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class CouponsController extends Controller
@@ -16,8 +17,10 @@ class CouponsController extends Controller
     public function view($id)
     {
         $coupon = Coupon::find($id);
-        
-        return view('user.coupon', ['coupon' => $coupon]);
+
+        return (auth()->user()->role_id == Role::IS_USER)
+                    ? view('user.coupon', ['coupon' => $coupon])
+                    : view('user.coupon', ['coupon' => $coupon]);
     }
 
     public function add()
