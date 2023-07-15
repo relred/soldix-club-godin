@@ -7,12 +7,7 @@
 
     <x-bladewind::centered-content class="py-12">
 
-        @if (session('status'))
-            <x-bladewind::alert
-                type="success">
-                {{ session('status') }}
-            </x-bladewind::alert>
-        @endif
+        <x-input-alerts/>
 
         @if (auth()->user()->is_local_admin)
             <button onclick="showModal('register')" class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
@@ -76,29 +71,12 @@
     <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <p class="text-lg ml-2 mb-2 font-semibold">Nombre de la Marca</p>
-        <x-bladewind::input placeholder="Ej. Súper Mexicali" name="name" />
+        <x-input-block type="text" name="name" placeholder="Ej. Súper Mexicali" value="{{ old('name') }}" required>
+            Nombre de la marca
+        </x-input-block>
 
-        <div class="mb-0.5">
-            <p class="text-lg ml-2 mb-2 font-semibold">Imagen (Opcional)</p>
+        <livewire:add-brand/>
 
-            <input type="file" name="file" id="file" class="sr-only" />
-            <label
-                for="file"
-                class="relative flex min-h-[200px] bg-gray-50 items-center justify-center rounded-md border border-dashed border-[#e0e0e0] px-12 text-center"
-                >
-            <div>
-                <span class="mb-2 block text-xl font-semibold text-[#07074D] rounded border border-[#e0e0e0] py-2 px-7">
-                    Seleccione una imagen
-                </span>
-            </div>
-            </label>
-        </div>
-
-        <input 
-            type="submit" 
-            class="flex my-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white" 
-            value="Registrar">
     </form>
 </x-bladewind::modal>
 

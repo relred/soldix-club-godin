@@ -6,8 +6,8 @@
     </x-slot>
 
     <x-bladewind::centered-content class="py-12">
-
-        <div class="grid gap-4 grid-cols-2">
+        <a class="flex w-24 my-9 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets') }}">← Volver</a>
+        <div class="grid gap-4 grid-cols-2 ">
             <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700 md:max-w-sm rounded-2xl">
                 <div class="pb-6">
                     <div class="flex flex-wrap justify-center">
@@ -87,7 +87,7 @@
         <div class="grid sm:grid-cols-2 pb-16">
             @foreach ($coupons as $coupon)
                 <x-coupon
-                    id=""
+                    id="{{ $coupon->id }}"
                     type="{{ $coupon->type }}"
                     tag="{{ $coupon->tag }}"
                     valid="Todos los martes">
