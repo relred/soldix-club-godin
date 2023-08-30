@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 //GENERAL
 Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/coupon/{id}', [CouponsController::class, 'view'])->name('coupon'); //coupon view
+Route::get('/coupons/{id}', [CouponsController::class, 'view'])->name('coupon'); //coupon view
 
 // USER
 Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
@@ -58,6 +58,8 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
     Route::get('/corporate/coupons/add', [CouponsController::class, 'add'])->name('corporate.coupons.add');
+    Route::get('/corporate/coupons/edit/{id}', [CouponsController::class, 'edit'])->name('corporate.coupons.edit');
+    Route::patch('/corporate/coupons/update', [CouponsController::class, 'update'])->name('corporate.coupons.update');
 
     // WALLETS
     Route::get('/corporate/wallets', [WalletsController::class, 'index'])->name('corporate.wallets');
@@ -73,9 +75,9 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::post('/admin/users', [AdminsController::class, 'store'])->name('admin.store');
     Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');
 
-    Route::get('/admin/corporate', [CorporatesController::class, 'index'])->name('admin.corporate.index');
-    Route::post('/admin/corporate', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
-    Route::delete('/admin/corporate/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
+    Route::get('/admin/corporates', [CorporatesController::class, 'index'])->name('admin.corporate.index');
+    Route::post('/admin/corporates', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
+    Route::delete('/admin/corporates/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
 });
 // END SUPERADMIN
 

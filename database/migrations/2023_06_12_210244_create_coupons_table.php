@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('validity')->nullable();
             $table->string('campain_starts');
             $table->string('campain_finishes');
-            $table->string('active');
+            $table->string('is_active');
+            $table->string('importance')->nullable();
             $table->string('target')->nullable();
             $table->string('parameters');
             $table->string('wallet_id')->nullable();

@@ -53,7 +53,7 @@
                         {{ $coupon->image }}
                     </x-slot>
                     {{ $coupon->name }}
-                </x-coupon>                
+                </x-coupon>
             @endforeach
         </div>
 

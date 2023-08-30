@@ -45,10 +45,22 @@ class CouponsController extends Controller
 //            'validity' => ,
             'campain_starts' => '',
             'campain_ends' => '',
-            'active' => 0,
+            'is_active' => 0,
             'parameters' => 0,
         ]);
 
         return redirect()->route('corporate.wallets.view', $id);
     }
+
+    public function edit($id)
+    {
+        $coupon = Coupon::find($id);
+        return view('admin.coupons.edit', ['coupon' => $coupon]);
+    }
+
+    public function update(Request $request)
+    {
+        return $request;
+    }
+
 }

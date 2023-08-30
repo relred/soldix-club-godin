@@ -1,10 +1,10 @@
 <a 
-    @if ($id != 'corporate')
-        href="{{ route('coupon', $id) }}"
+    @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
+        href="{{ route('corporate.coupons.edit', $id) }}"
     @else
-        href="#"
+        href="{{ route('coupon', $id) }}"
     @endif
-    class="relative inline-block w-full transform transition-transform duration-300 ease-in-out hover:-translate-y-2">
+    class="relative inline-block w-full transform transition-transform duration-300 ease-in-out hover:-translate-y-2 select-none">
     <div class="rounded-lg bg-white p-4 shadow-xl mx-2 my-3">
         <div class="relative flex h-52 justify-center overflow-hidden rounded-lg">
 
