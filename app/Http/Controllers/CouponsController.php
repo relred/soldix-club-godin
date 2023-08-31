@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coupon;
 use App\Models\Wallet;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class CouponsController extends Controller
@@ -16,8 +17,10 @@ class CouponsController extends Controller
     public function view($id)
     {
         $coupon = Coupon::find($id);
-        
-        return view('user.coupon', ['coupon' => $coupon]);
+
+        return (auth()->user()->role_id == Role::IS_USER)
+                    ? view('user.coupon', ['coupon' => $coupon])
+                    : view('user.coupon', ['coupon' => $coupon]);
     }
 
     public function add()
@@ -39,13 +42,25 @@ class CouponsController extends Controller
             'description' => '',
             'type' => $request->type,
             'tag' => $request->tag,
-            'valid' => 1,
+//            'validity' => ,
             'campain_starts' => '',
             'campain_ends' => '',
-            'active' => 0,
+            'is_active' => 0,
             'parameters' => 0,
         ]);
 
         return redirect()->route('corporate.wallets.view', $id);
     }
+
+    public function edit($id)
+    {
+        $coupon = Coupon::find($id);
+        return view('admin.coupons.edit', ['coupon' => $coupon]);
+    }
+
+    public function update(Request $request)
+    {
+        return $request;
+    }
+
 }

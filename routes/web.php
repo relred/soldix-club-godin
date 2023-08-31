@@ -16,7 +16,9 @@ Route::get('/', function () {
 });
 // END HOME
 
+//GENERAL
 Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/coupons/{id}', [CouponsController::class, 'view'])->name('coupon'); //coupon view
 
 // USER
 Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
@@ -24,12 +26,9 @@ Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
         return view('user.index');
     })->name('home');
 
-    Route::get('/coupon/{id}', [CouponsController::class, 'view'])->name('coupon');
-
     Route::get('/wallets', [WalletsController::class, 'public_index'])->name('public.wallets.index');
     Route::get('/wallets/{id}', [WalletsController::class, 'public_view'])->name('public.wallets.view');
 });
-
 // END USER
 
 // CASHIER
@@ -44,14 +43,25 @@ Route::get('/result', function () {
 
 // CORPORATE
 Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
+    //USERS
     Route::get('/corporate/users', [CorporatesController::class, 'index'])->name('corporate.index');
     Route::post('/corporate/users', [CorporatesController::class, 'store'])->name('corporate.store');
+
+    //BRANDS
     Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
     Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
+
+    //STORES
     Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
     Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
+
+    // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
     Route::get('/corporate/coupons/add', [CouponsController::class, 'add'])->name('corporate.coupons.add');
+    Route::get('/corporate/coupons/edit/{id}', [CouponsController::class, 'edit'])->name('corporate.coupons.edit');
+    Route::patch('/corporate/coupons/update', [CouponsController::class, 'update'])->name('corporate.coupons.update');
+
+    // WALLETS
     Route::get('/corporate/wallets', [WalletsController::class, 'index'])->name('corporate.wallets');
     Route::get('/corporate/wallets/{id}', [WalletsController::class, 'view'])->name('corporate.wallets.view');
     Route::post('/corporate/wallets/{id}', [WalletsController::class, 'update'])->name('corporate.wallets.update');
@@ -65,9 +75,9 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::post('/admin/users', [AdminsController::class, 'store'])->name('admin.store');
     Route::delete('/admin/{id}', [AdminsController::class, 'destroy'])->name('admin.destroy');
 
-    Route::get('/admin/corporate', [CorporatesController::class, 'index'])->name('admin.corporate.index');
-    Route::post('/admin/corporate', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
-    Route::delete('/admin/corporate/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
+    Route::get('/admin/corporates', [CorporatesController::class, 'index'])->name('admin.corporate.index');
+    Route::post('/admin/corporates', [CorporatesController::class, 'store_local_admin'])->name('admin.corporate.store');
+    Route::delete('/admin/corporates/{id}', [CorporatesController::class, 'destroy'])->name('admin.corporate.destroy');
 });
 // END SUPERADMIN
 

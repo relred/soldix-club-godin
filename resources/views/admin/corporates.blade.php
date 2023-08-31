@@ -7,12 +7,7 @@
 
     <x-bladewind::centered-content class="py-12">
 
-        @if (session('status'))
-            <x-bladewind::alert
-                type="success">
-                {{ session('status') }}
-            </x-bladewind::alert>
-        @endif
+        <x-input-alerts/>
 
         <button onclick="showModal('register')" class="flex mb-5 ml-2 px-3 py-2 bg-red-500 rounded-md text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus mr-1" width="20" height="25" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -118,33 +113,35 @@
 
             @if (auth()->user()->role_id == 4)
                 <p class="mb-3 text-lg">Información de corporativo</p>
-                <p class="text-lg ml-2 font-semibold">Nombre de corporativo</p>
-                <x-bladewind::input placeholder="Ej. Corporativo del norte S.A" name="corporate_name" />
 
-                <p class="text-lg ml-2 font-semibold">Identificador corporativo</p>
-                <x-bladewind::input placeholder="Ej. corpnorte" name="corporate_suffix" />
+                <x-input-block type="text" name="corporate_name" placeholder="Ej. Corporativo del norte S.A" value="{{ old('corporate_name') }}" required>
+                    Nombre de corporativo
+                </x-input-block>
+
+                <x-input-block type="text" name="corporate_suffix" placeholder="Ej. corpnorte" pattern="[a-z0-9]{3,12}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres y un máximo de 12" required>
+                    Identificador corporativo
+                </x-input-block>
                 
                 <hr class="mb-4 mt-6">
 
                 <p class="mb-3 text-lg">Información de administrador corporativo</p>
             @endif
 
-            @if (auth()->user()->role_id == 3)
-                <p class="text-lg ml-2 font-semibold">Nombre de nuevo usuario</p>
-            @else
-                <p class="text-lg ml-2 font-semibold">Nombre del administrador corporativo</p>
-            @endif
+            <x-input-block type="text" name="name" placeholder="Ej. Jorge sanchez" value="{{ old('name') }}" required>
+                @if (auth()->user()->role_id == 3)
+                    Nombre de nuevo usuario
+                @else
+                    Nombre del administrador corporativo
+                @endif
+            </x-input-block>
 
-            <x-bladewind::input placeholder="Ej. Jorge sanchez" name="name" />
+            <x-input-block type="text" name="username" placeholder="Ej. jsanchez" pattern="[a-z0-9]{3,16}" title="No puede contener espacios, mayúsculas o simbolos, y debe tener al menos 3 caracteres un máximo de 16" required>
+                Usuario
+            </x-input-block>
 
-            <p class="text-lg ml-2 font-semibold">Usuario</p>
-            <x-bladewind::input placeholder="Ej. jsanchez" name="username" />
-    
-{{--             <p class="text-lg ml-2 font-semibold">Correo Electrócino</p>
-            <x-bladewind::input type="email" placeholder="Ej. contacto@corpnorte.com" name="email" /> --}}
-
-            <p class="text-lg ml-2 font-semibold">Contraseña</p>
-            <x-bladewind::input type="password" placeholder="*********" name="password" viewable="true" />
+            <x-input-block type="password" name="password" placeholder="*********" required>
+                Contraseña
+            </x-input-block>
     
             <input 
                 type="submit" 

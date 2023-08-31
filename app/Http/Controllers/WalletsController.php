@@ -25,7 +25,7 @@ class WalletsController extends Controller
 
     public function public_index()
     {
-        $wallets = Wallet::all();
+        $wallets = Wallet::where('is_public', True)->get();
 
         return view('user.wallets', ['wallets' => $wallets]);
     }
@@ -51,7 +51,11 @@ class WalletsController extends Controller
             $wallet->image = $image->getPath();
         }
 
-        if ($request->name || $request->file) {
+        if ($request->is_public) {
+            $wallet->is_public = ($request->is_public == 'true') ? true : false;
+        }
+
+        if ($request->name || $request->file || $request->is_public) {
             $wallet->save();
         }
 

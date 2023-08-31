@@ -45,9 +45,23 @@
                             {{ __('Cuponeras') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('corporate.coupons')" :active="request()->routeIs('corporate.coupons')">
-                            {{ __('Cupones') }}
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Reserva') }}
                         </x-nav-link>
+                        
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Subastas') }}
+                        </x-nav-link>
+                        
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Rifas') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Promociones') }}
+                        </x-nav-link>
+                        
+
 
                     @endif
 
@@ -112,16 +126,72 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                {{ __('Admin') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
-                {{ __('Point of Sale') }}
-            </x-responsive-nav-link>
+
+            @if (auth()->user()->role_id == App\Models\Role::IS_USER)
+                <x-responsive-nav-link :href="route('public.wallets.index')" :active="request()->routeIs('public.wallets.index')">
+                    {{ __('Explorar') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Subastas') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Rifas') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Promociones') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
+                <x-responsive-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
+                    {{ __('Point of Sale') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
+                <x-responsive-nav-link :href="route('corporate.index')">
+                    {{ __('Usuarios') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('corporate.brands')">
+                    {{ __('Marcas') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('corporate.stores')">
+                    {{ __('Establecimientos') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('corporate.wallets')">
+                    {{ __('Cuponeras') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Subastas') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Rifas') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Promociones') }}
+                </x-responsive-nav-link>
+
+            @endif
+
+            @if (auth()->user()->role_id == App\Models\Role::IS_ADMIN)
+                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                    {{ __('Admins') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.corporate.index')" :active="request()->routeIs('admin.corporate.index')">
+                    {{ __('Corporativos') }}
+                </x-responsive-nav-link>
+            @endif
+
         </div>
 
         <!-- Responsive Settings Options -->

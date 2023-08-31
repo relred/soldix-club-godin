@@ -54,11 +54,10 @@ class AddCoupon extends Component
                 'type' => $this->type,
                 'tag' => $this->tag,
                 'image' => $imageCloud,
-                'valid' => 1,
                 'description' => '',
                 'campain_starts' => '',
                 'campain_finishes' => '',
-                'active' => 0,
+                'is_active' => 0,
                 'parameters' => 0,
             ])            
         ) {
