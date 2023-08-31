@@ -45,9 +45,23 @@
                             {{ __('Cuponeras') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('corporate.coupons')" :active="request()->routeIs('corporate.coupons')">
-                            {{ __('Cupones') }}
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Reserva') }}
                         </x-nav-link>
+                        
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Subastas') }}
+                        </x-nav-link>
+                        
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Rifas') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                            {{ __('Promociones') }}
+                        </x-nav-link>
+                        
+
 
                     @endif
 
@@ -118,6 +132,18 @@
                 <x-responsive-nav-link :href="route('public.wallets.index')" :active="request()->routeIs('public.wallets.index')">
                     {{ __('Explorar') }}
                 </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Subastas') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Rifas') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('public.wallets.index')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Promociones') }}
+                </x-responsive-nav-link>
             @endif
 
             @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
@@ -127,24 +153,32 @@
             @endif
 
             @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
-                <x-responsive-nav-link :href="route('corporate.index')" :active="request()->routeIs('corporate.index')">
+                <x-responsive-nav-link :href="route('corporate.index')">
                     {{ __('Usuarios') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('corporate.brands')" :active="request()->routeIs('corporate.brands')">
+                <x-responsive-nav-link :href="route('corporate.brands')">
                     {{ __('Marcas') }}
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link :href="route('corporate.stores')" :active="request()->routeIs('corporate.stores')">
+                <x-responsive-nav-link :href="route('corporate.stores')">
                     {{ __('Establecimientos') }}
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link :href="route('corporate.wallets')" :active="request()->routeIs('corporate.wallets')">
+                <x-responsive-nav-link :href="route('corporate.wallets')">
                     {{ __('Cuponeras') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('corporate.coupons')" :active="request()->routeIs('corporate.coupons')">
-                    {{ __('Cupones') }}
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Subastas') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Rifas') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
+                    {{ __('Promociones') }}
                 </x-responsive-nav-link>
 
             @endif

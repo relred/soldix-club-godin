@@ -131,7 +131,7 @@
                     id="{{ $coupon->id }}"
                     type="{{ $coupon->type }}"
                     tag="{{ $coupon->tag }}"
-                    valid="Todos los martes">
+                    valid="Consulte validez en interior">
                     <x-slot name="image">
                         {{ $coupon->image }}
                     </x-slot>

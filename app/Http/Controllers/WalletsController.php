@@ -25,7 +25,7 @@ class WalletsController extends Controller
 
     public function public_index()
     {
-        $wallets = Wallet::all();
+        $wallets = Wallet::where('is_public', True)->get();
 
         return view('user.wallets', ['wallets' => $wallets]);
     }
