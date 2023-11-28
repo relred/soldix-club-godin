@@ -128,14 +128,14 @@
                     </label>
                 </div>
             </div>
-            <div class="mb-0.5">
+{{--             <div class="mb-0.5">
                 <div class="grid grid-cols-2">
                     <label class="" for="campain_start">Inicio</label>
                     <label for="campain_finishes">Acaba</label>
                 </div>
                 <input type="date" name="campain_start" id="campain_start">
                 <input type="date" name="campain_finishes" id="campain_finishes">
-            </div>
+            </div> --}}
 
             <input
                 wire:click="store({{ $wallet_id }})"
