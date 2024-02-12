@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('redeemed_coupons', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('coupon_id');
+            $table->string('cashier')->nullable();
+            $table->string('session')->nullable();
+            $table->string('transaction_data')->nullable();
+            $table->string('brand')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('redeemed_coupons');
     }
 };

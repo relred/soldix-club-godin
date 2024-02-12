@@ -27,6 +27,7 @@ class BrandsController extends Controller
 
         $brand = $corporate->brands()->create([
             'name' => $request->name, 
+            'long_id' => sprintf("%u", crc32(uniqid())), 
             'image' => $image, 
         ]);
 

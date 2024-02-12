@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('is_public')->default(0);
             $table->string('corporate_id');
             $table->string('brand_id');
+            $table->string('club')->nullable();
             $table->timestamps();
         });
     }

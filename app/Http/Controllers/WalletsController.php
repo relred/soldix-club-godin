@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Coupon;
+use App\Models\RedeemedCoupon;
+use Illuminate\Support\Facades\DB;
 
 class WalletsController extends Controller
 {
@@ -32,10 +35,18 @@ class WalletsController extends Controller
 
     public function public_view($id)
     {
-        $wallet = Wallet::findOrFail($id);
-        $coupons = $wallet->coupons()->get();
+         $wallet = Wallet::findOrFail($id);
+        $coupons = $wallet->coupons()->get(); 
 
-        return view('user.wallet.view', ['wallet' => $wallet, 'coupons' => $coupons]);
+        $filteredCoupons = [];
+
+        foreach ($coupons as $coupon) {
+            if (!RedeemedCoupon::where('coupon_id', $coupon->id)->where('user_id', auth()->user()->id)->exists()) {
+                $filteredCoupons[] = $coupon;
+            }
+        }
+
+        return view('user.wallet.view', ['wallet' => $wallet, 'coupons' => $filteredCoupons]);
     }
 
     public function update(Request $request, $id)
