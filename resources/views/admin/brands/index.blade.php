@@ -60,25 +60,25 @@
 
     </x-bladewind::centered-content>
     <x-bladewind::modal
-    title="Agregar Nueva Marca"
-    name="register"
-    size="large"
-    centerActionButtons="false"
-    okButtonLabel=""
-    cancelButtonLabel="Cerrar"
-    >
-    <hr class="mb-7 mt-1">
-    <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+        title="Agregar Nueva Marca"
+        name="register"
+        size="large"
+        centerActionButtons="false"
+        okButtonLabel=""
+        cancelButtonLabel="Cerrar"
+        >
+        <hr class="mb-7 mt-1">
+        <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-        <x-input-block type="text" name="name" placeholder="Ej. Súper Mexicali" value="{{ old('name') }}" required>
-            Nombre de la marca
-        </x-input-block>
+            <x-input-block type="text" name="name" placeholder="Ej. Súper Mexicali" value="{{ old('name') }}" required>
+                Nombre de la marca
+            </x-input-block>
 
-        <livewire:add-brand/>
+            <livewire:add-brand/>
 
-    </form>
-</x-bladewind::modal>
+        </form>
+    </x-bladewind::modal>
 
 
 </x-app-layout>

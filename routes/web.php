@@ -65,6 +65,9 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/wallets', [WalletsController::class, 'index'])->name('corporate.wallets');
     Route::get('/corporate/wallets/{id}', [WalletsController::class, 'view'])->name('corporate.wallets.view');
     Route::post('/corporate/wallets/{id}', [WalletsController::class, 'update'])->name('corporate.wallets.update');
+    Route::patch('/corporate/wallets/{id}/bulk-date', [WalletsController::class, 'bulkEditDate'])->name('corporate.wallets.bulk.date');
+    Route::patch('/corporate/wallets/{id}/bulk-days', [WalletsController::class, 'bulkEditDays'])->name('corporate.wallets.bulk.days');
+    Route::patch('/corporate/wallets/{id}/bulk-public', [WalletsController::class, 'bulkEditPublic'])->name('corporate.wallets.bulk.public');
     Route::get('/corporate/wallets/{id}/add', [CouponsController::class, 'add_to_wallet'])->name('corporate.wallets.coupon.add');
 });
 // END CORPORATE

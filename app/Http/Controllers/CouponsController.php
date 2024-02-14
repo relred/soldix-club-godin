@@ -77,7 +77,7 @@ class CouponsController extends Controller
             $coupon->campain_finishes = $request->campain_finishes;
         }
 
-        if ($request->is_active == 1 && !$this->isPublishable($coupon)) {
+        if ($request->is_active == 1 && !$this::isPublishable($coupon)) {
             return redirect()->route('corporate.coupons.edit', $coupon->id)->with('status', 'El cupon debe tener fecha de inicio y fin de campaña, y al menos un día de validez para hacerse público.');
         } else if($request->is_active){
             $coupon->is_active = $request->is_active;
@@ -90,7 +90,7 @@ class CouponsController extends Controller
         return redirect()->route('corporate.coupons.edit', $coupon->id);
     }
 
-    public function isPublishable($coupon)
+    static function isPublishable($coupon)
     {
         // Check if campain_starts and campain_finishes are set
         if (!$coupon->campain_starts || !$coupon->campain_finishes) {

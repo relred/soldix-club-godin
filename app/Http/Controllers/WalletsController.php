@@ -73,4 +73,53 @@ class WalletsController extends Controller
         return redirect()->route('corporate.wallets.view', $id)->with('status', 'Cuponera actualizada con éxito');
     }
 
+    public function bulkEditDate(Request $request, $id)
+    {
+        $coupons = Wallet::findOrFail($id)->coupons()->get();
+
+        foreach ($coupons as $coupon) {
+
+            if ($request->campain_starts) {
+                $coupon->campain_starts = $request->campain_starts;
+            }
+
+            if ($request->campain_finishes) {
+                $coupon->campain_finishes = $request->campain_finishes;
+            }
+            $coupon->save();
+        }
+
+        return redirect()->route('corporate.wallets.view', $id)->with('status', 'Cuponera actualizada con éxito');
+    }
+
+    public function bulkEditDays(Request $request, $id)
+    {
+        $coupons = Wallet::findOrFail($id)->coupons()->get();
+
+        $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+        foreach ($coupons as $coupon) {
+            foreach ($daysOfWeek as $day) {
+                $requestKey = 'is_valid_' . $day;
+                $coupon->$requestKey = $request->$requestKey ? 1 : 0;
+            }
+            $coupon->save();
+        }
+
+        return redirect()->route('corporate.wallets.view', $id)->with('status', 'Cuponera actualizada con éxito');
+    }
+
+    public function bulkEditPublic($id)
+    {
+        $coupons = Wallet::findOrFail($id)->coupons()->get();
+
+        foreach ($coupons as $coupon) {
+            if (CouponsController::isPublishable($coupon)) {
+                $coupon->is_active = 1;
+                $coupon->save();
+            }
+        }
+        return redirect()->route('corporate.wallets.view', $id)->with('status', 'Cuponera actualizada con éxito');
+    }
+
 }

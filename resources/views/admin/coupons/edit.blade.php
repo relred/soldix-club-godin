@@ -136,7 +136,7 @@
                 <input
                     type="submit"
                     class="flex w-full my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer"
-                    value="Enviar">
+                    value="Guardar">
     
             </div>
         </form>
