@@ -24,7 +24,7 @@ class Brand extends Model
         return $this->belongsTo(Corporate::class);
     }
 
-    public function wallet(): HasMany
+    public function wallets(): HasMany
     {
         return $this->hasMany(Wallet::class);
     }

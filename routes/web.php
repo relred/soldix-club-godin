@@ -49,11 +49,13 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
 
     //BRANDS
     Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
+    Route::get('/corporate/brands/{id}', [BrandsController::class, 'view'])->name('corporate.brands.view');
+    Route::post('/corporate/brands/{id}', [WalletsController::class, 'store'])->name('corporate.wallets.store');
     Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
 
     //STORES
-    Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
-    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
+/*     Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
+    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store'); */
 
     // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');

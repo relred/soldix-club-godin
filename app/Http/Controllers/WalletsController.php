@@ -8,6 +8,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Coupon;
 use App\Models\RedeemedCoupon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Brand;
 
 class WalletsController extends Controller
 {
@@ -21,9 +22,24 @@ class WalletsController extends Controller
     public function view($id)
     {
         $wallet = Wallet::findOrFail($id);
+        $brand = $wallet->brand()->first();
         $coupons = $wallet->coupons()->get();
 
-        return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons]);
+        return view('admin.wallets.view', ['wallet' => $wallet, 'coupons' => $coupons, 'brand' => $brand]);
+    }
+
+    public function store(Request $request, $id)
+    {
+        $brand = Brand::find($id);
+        $image = $request->file->storeOnCloudinary('soldix-club/wallets');
+
+        $brand->wallets()->create([
+            'name' => $request->name,
+            'image' => $image->getPath(),
+            'corporate_id' => auth()->user()->corporate_id,
+        ]);
+
+        return redirect()->route('corporate.brands.view', $id)->with('status', 'Cuponera actualizada con éxito');
     }
 
     public function public_index()

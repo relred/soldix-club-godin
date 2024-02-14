@@ -37,9 +37,9 @@
                             {{ __('Marcas') }}
                         </x-nav-link>
                         
-                        <x-nav-link :href="route('corporate.stores')" :active="request()->routeIs('corporate.stores')">
+{{--                         <x-nav-link :href="route('corporate.stores')" :active="request()->routeIs('corporate.stores')">
                             {{ __('Establecimientos') }}
-                        </x-nav-link>
+                        </x-nav-link> --}}
                         
                         <x-nav-link :href="route('corporate.wallets')" :active="request()->routeIs('corporate.wallets')">
                             {{ __('Cuponeras') }}
@@ -161,9 +161,9 @@
                     {{ __('Marcas') }}
                 </x-responsive-nav-link>
                 
-                <x-responsive-nav-link :href="route('corporate.stores')">
+{{--                 <x-responsive-nav-link :href="route('corporate.stores')">
                     {{ __('Establecimientos') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
                 
                 <x-responsive-nav-link :href="route('corporate.wallets')">
                     {{ __('Cuponeras') }}

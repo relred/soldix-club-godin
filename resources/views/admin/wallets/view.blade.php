@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <x-bladewind::centered-content class="py-12">
-        <a class="flex w-24 my-9 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets') }}">← Volver</a>
+    <x-bladewind::centered-content>
+        <a class="flex w-24 my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets') }}">← Volver</a>
         <div class="grid gap-4 grid-cols-2 ">
             <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700 md:max-w-sm rounded-2xl">
                 <div class="pb-6">
@@ -32,7 +32,9 @@
                     <div class="pt-6 pb-1.5 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full px-6">
+                                <a href="{{ route('corporate.brands.view', $brand->id) }}" class="mr-2 text-lg text-blue-500">Marca: {{ $brand->name }}</a>
                                 <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+
                                     <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                                         Cuponera soldix club.
                                     </p>
