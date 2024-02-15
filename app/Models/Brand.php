@@ -14,6 +14,7 @@ class Brand extends Model
 
     protected $fillable = [
         'name',
+        'long_id',
         'image',
         'corporate_id',
     ];
@@ -23,9 +24,9 @@ class Brand extends Model
         return $this->belongsTo(Corporate::class);
     }
 
-    public function wallet(): HasOne
+    public function wallets(): HasMany
     {
-        return $this->hasOne(Wallet::class);
+        return $this->hasMany(Wallet::class);
     }
 
     public function stores(): HasMany

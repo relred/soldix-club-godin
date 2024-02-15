@@ -11,6 +11,7 @@ class Coupon extends Model
     use HasFactory;
 
     protected $fillable =[
+        'redeem_id',
         'name',
         'description',
         'type',
@@ -24,6 +25,13 @@ class Coupon extends Model
         'target',
         'parameters',
         'wallet_id',
+        'is_valid_monday',
+        'is_valid_tuesday',
+        'is_valid_wednesday',
+        'is_valid_thursday',
+        'is_valid_friday',
+        'is_valid_saturday',
+        'is_valid_sunday',
     ];
 
     public function wallet(): BelongsTo

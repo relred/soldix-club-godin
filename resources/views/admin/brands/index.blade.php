@@ -50,6 +50,14 @@
                             </div>
                         </td>
                         <td>
+                            <a href="{{ route('corporate.brands.view', $brand->id) }}" class="flex mr-3 mt-2 px-3 py-2 m-auto bg-green-500 hover:bg-green-400 rounded-md text-white w-11">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-filled" width="20" height="25" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                    <path d="M16 5l3 3" />
+                                </svg>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -60,25 +68,25 @@
 
     </x-bladewind::centered-content>
     <x-bladewind::modal
-    title="Agregar Nueva Marca"
-    name="register"
-    size="large"
-    centerActionButtons="false"
-    okButtonLabel=""
-    cancelButtonLabel="Cerrar"
-    >
-    <hr class="mb-7 mt-1">
-    <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+        title="Agregar Nueva Marca"
+        name="register"
+        size="large"
+        centerActionButtons="false"
+        okButtonLabel=""
+        cancelButtonLabel="Cerrar"
+        >
+        <hr class="mb-7 mt-1">
+        <form action="{{ route('corporate.brands.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-        <x-input-block type="text" name="name" placeholder="Ej. Súper Mexicali" value="{{ old('name') }}" required>
-            Nombre de la marca
-        </x-input-block>
+            <x-input-block type="text" name="name" placeholder="Ej. Súper Mexicali" value="{{ old('name') }}" required>
+                Nombre de la marca
+            </x-input-block>
 
-        <livewire:add-brand/>
+            <livewire:add-brand/>
 
-    </form>
-</x-bladewind::modal>
+        </form>
+    </x-bladewind::modal>
 
 
 </x-app-layout>

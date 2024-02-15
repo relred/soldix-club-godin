@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('type');
+            $table->string('redeem_id');
             $table->string('tag');
             $table->string('validity')->nullable();
             $table->string('campain_starts');
@@ -25,7 +26,15 @@ return new class extends Migration
             $table->string('importance')->nullable();
             $table->string('target')->nullable();
             $table->string('parameters');
-            $table->string('wallet_id')->nullable();
+            $table->string('wallet_id');
+            $table->string('is_valid_monday')->nullable();
+            $table->string('is_valid_tuesday')->nullable();
+            $table->string('is_valid_wednesday')->nullable();
+            $table->string('is_valid_thursday')->nullable();
+            $table->string('is_valid_friday')->nullable();
+            $table->string('is_valid_saturday')->nullable();
+            $table->string('is_valid_sunday')->nullable();
+            $table->string('is_archived')->nullable();
             $table->timestamps();
         });
     }

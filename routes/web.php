@@ -49,11 +49,13 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
 
     //BRANDS
     Route::get('/corporate/brands', [BrandsController::class, 'index'])->name('corporate.brands');
+    Route::get('/corporate/brands/{id}', [BrandsController::class, 'view'])->name('corporate.brands.view');
+    Route::post('/corporate/brands/{id}', [WalletsController::class, 'store'])->name('corporate.wallets.store');
     Route::post('/corporate/brands', [BrandsController::class, 'store'])->name('corporate.brands.store');
 
     //STORES
-    Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
-    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store');
+/*     Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
+    Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store'); */
 
     // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
@@ -65,6 +67,9 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::get('/corporate/wallets', [WalletsController::class, 'index'])->name('corporate.wallets');
     Route::get('/corporate/wallets/{id}', [WalletsController::class, 'view'])->name('corporate.wallets.view');
     Route::post('/corporate/wallets/{id}', [WalletsController::class, 'update'])->name('corporate.wallets.update');
+    Route::patch('/corporate/wallets/{id}/bulk-date', [WalletsController::class, 'bulkEditDate'])->name('corporate.wallets.bulk.date');
+    Route::patch('/corporate/wallets/{id}/bulk-days', [WalletsController::class, 'bulkEditDays'])->name('corporate.wallets.bulk.days');
+    Route::patch('/corporate/wallets/{id}/bulk-public', [WalletsController::class, 'bulkEditPublic'])->name('corporate.wallets.bulk.public');
     Route::get('/corporate/wallets/{id}/add', [CouponsController::class, 'add_to_wallet'])->name('corporate.wallets.coupon.add');
 });
 // END CORPORATE

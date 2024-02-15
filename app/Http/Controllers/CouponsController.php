@@ -42,7 +42,7 @@ class CouponsController extends Controller
             'description' => '',
             'type' => $request->type,
             'tag' => $request->tag,
-//            'validity' => ,
+            'redeem_id' => uniqid(),
             'campain_starts' => '',
             'campain_ends' => '',
             'is_active' => 0,
@@ -60,7 +60,52 @@ class CouponsController extends Controller
 
     public function update(Request $request)
     {
-        return $request;
+        $coupon = Coupon::find($request->id);
+
+        $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+        foreach ($daysOfWeek as $day) {
+            $requestKey = 'is_valid_' . $day;
+            $coupon->$requestKey = $request->$requestKey ? 1 : 0;
+        }
+
+        if ($request->campain_starts) {
+            $coupon->campain_starts = $request->campain_starts;
+        }
+
+        if ($request->campain_finishes) {
+            $coupon->campain_finishes = $request->campain_finishes;
+        }
+
+        if ($request->is_active == 1 && !$this::isPublishable($coupon)) {
+            return redirect()->route('corporate.coupons.edit', $coupon->id)->with('status', 'El cupon debe tener fecha de inicio y fin de campaña, y al menos un día de validez para hacerse público.');
+        } else if($request->is_active){
+            $coupon->is_active = $request->is_active;
+        } else{
+            $coupon->is_active = 0;
+        }
+
+        $coupon->save();
+
+        return redirect()->route('corporate.coupons.edit', $coupon->id);
+    }
+
+    static function isPublishable($coupon)
+    {
+        // Check if campain_starts and campain_finishes are set
+        if (!$coupon->campain_starts || !$coupon->campain_finishes) {
+            return false;
+        }
+
+        // Check if at least one day of the week is set to 1
+        $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        foreach ($daysOfWeek as $day) {
+            if ($coupon->{'is_valid_' . $day}) {
+                return true; // At least one day is valid
+            }
+        }
+
+        return false; // No day is set to 1
     }
 
 }

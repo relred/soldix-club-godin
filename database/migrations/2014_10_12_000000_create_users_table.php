@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('role_id');
             $table->string('corporate_id')->nullable();
             $table->string('store_id')->nullable();
+            $table->string('target')->nullable();
+            $table->string('club')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
