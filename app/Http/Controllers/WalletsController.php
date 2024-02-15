@@ -52,7 +52,7 @@ class WalletsController extends Controller
     public function public_view($id)
     {
          $wallet = Wallet::findOrFail($id);
-        $coupons = $wallet->coupons()->get(); 
+        $coupons = $wallet->coupons()->where('is_active', 1)->get(); 
 
         $filteredCoupons = [];
 
