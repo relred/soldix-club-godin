@@ -8,25 +8,33 @@
     <x-bladewind::centered-content>
         <a class="flex w-24 my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.brands') }}">← Volver</a>
         <x-input-alerts/>
-        <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700 md:max-w-sm rounded-2xl">
+        <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl md:max-w-sm rounded-2xl">
             <div class="pb-6">
                 <div class="flex flex-wrap justify-center">
                     <div class="flex justify-center w-full">
                         <div class="relative">
                             @if ($brand->image)
-                                <img src="{{ $brand->image }}" class="dark:shadow-xl border-white dark:border-gray-800 rounded-3xl align-middle border-8 absolute -m-16 -ml-18 lg:-ml-16 max-w-[150px]" />
+                                <img src="{{ $brand->image }}" class=" border-white rounded-3xl align-middle border-8 absolute -m-16 -ml-18 lg:-ml-16 max-w-[150px]" />
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="mt-24 text-center">
-                    <h3 class="mb-4 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+                    <h3 class="mb-4 text-2xl font-bold leading-normal text-gray-700">
                         @if ($brand->name)
                             {{ $brand->name }}
                         @else
                             {{ $brand->brand->name }}
                         @endif
                     </h3>
+                    <div class="mb-4 font-bold leading-normal text-gray-700">
+                        <div class="block">
+                            Brand ID: <input type="password" value="{{ $brand->long_id }}" class="appearance-none border-none bg-transparent text-black" id="brand_id" disabled>
+                        </div>
+                        <div class="block mt-1">
+                            <input type="checkbox" id="toggle" onclick="toggle()"> <label for="toggle" class="mt-2 select-none">Mostrar</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="relative h-6 overflow-hidden translate-y-6 rounded-b-xl">
                     <div class="absolute flex -space-x-12 rounded-b-2xl">
@@ -57,10 +65,12 @@
                     @if ($wallet->name)
                         <x-wallet-card
                             image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
                             name="{{ $wallet->name }}"/>
                     @else
                         <x-wallet-card
                             image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
                             name="{{ $wallet->brand->name }}"/>
                     @endif
                 </a>
@@ -96,5 +106,16 @@
 
         </form>
     </x-bladewind::modal>
+
+    <script>
+        function toggle() {
+            var x = document.getElementById("brand_id");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 
 </x-app-layout>

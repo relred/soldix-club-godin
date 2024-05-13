@@ -13,7 +13,6 @@
             </svg>
         </p>
     </div>
-    <div class="mt-4 pl-2 mb-2 flex justify-between ">
-        <p class="text-lg font-semibold text-gray-900 mb-0">{{ $name }}</p>
-    </div>
+    <p class="mt-2 pl-2 text-lg font-semibold text-gray-900">{{ $name }}</p>
+    <p class="text-lg font-semibold text-red-600/90 pl-2 mb-1">{{ $brand }}</p>
 </div>

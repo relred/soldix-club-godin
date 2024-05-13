@@ -19,12 +19,15 @@
                     </div>
                 </div>
                 <div class="mt-24 text-center">
-                    <h3 class="mb-4 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+                    <h3 class="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
                         @if ($wallet->name)
                             {{ $wallet->name }}
                         @else
                             {{ $wallet->brand->name }}
                         @endif
+                    </h3>
+                    <h3 class="mb-4 text-xl font-bold leading-normal text-red-600/90 dark:text-gray-300">
+                        {{ $wallet->getBrand() }}
                     </h3>
                 </div>
 

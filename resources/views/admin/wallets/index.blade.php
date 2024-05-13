@@ -13,10 +13,12 @@
                     @if ($wallet->name)
                         <x-wallet-card
                             image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
                             name="{{ $wallet->name }}"/>
                     @else
                         <x-wallet-card
                             image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
                             name="{{ $wallet->brand->name }}"/>
                     @endif
                 </a>
