@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Coupon;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -27,14 +30,23 @@ class BrandsController extends Controller
 
         $brand = $corporate->brands()->create([
             'name' => $request->name, 
+            'long_id' => sprintf("%u", crc32(uniqid())), 
             'image' => $image, 
         ]);
 
-        $brand->wallet()->create([
+        $brand->wallets()->create([
             'corporate_id' => auth()->user()->corporate()->first()->id,
             'image' => $image,
         ]);
 
         return redirect()->route('corporate.brands')->with('status', 'Marca registrada con éxito');
+    }
+
+    public function view($id)
+    {
+        $brand = Brand::find($id);
+        $wallets = Wallet::where('brand_id', $id)->get();
+
+        return view('admin.brands.view', ['brand' => $brand, 'wallets' => $wallets]);
     }
 }

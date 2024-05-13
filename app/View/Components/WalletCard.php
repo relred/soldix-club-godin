@@ -10,13 +10,15 @@ class WalletCard extends Component
 {
     public $name;
     public $image;
+    public $brand;
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $image)
+    public function __construct($name, $image, $brand)
     {
         $this->name = $name;
         $this->image = $image;
+        $this->brand = $brand;
     }
 
     /**

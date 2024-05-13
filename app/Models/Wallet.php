@@ -33,4 +33,9 @@ class Wallet extends Model
     {
         return $this->hasMany(Coupon::class);
     }
+
+    public function getBrand()
+    {
+        return $this->brand()->first()->name;
+    }
 }

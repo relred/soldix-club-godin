@@ -11,6 +11,7 @@
                 <a href="{{ route('public.wallets.view', $wallet->id) }}">
                     <x-wallet-card
                         image="{{ $wallet->image }}"
+                        brand="{{ $wallet->getBrand() }}"
                         name="{{ ($wallet->name) ? $wallet->name : $wallet->brand->name }}"/>
                 </a>
             @endforeach

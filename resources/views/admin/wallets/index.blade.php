@@ -10,9 +10,17 @@
         <div class="grid sm:grid-cols-2 pb-16">
             @foreach ($wallets as $wallet)
                 <a href="{{ route('corporate.wallets.view', $wallet->id) }}">
-                    <x-wallet-card
-                        image="{{ $wallet->image }}"
-                        name="{{ $wallet->brand->name }}"/>
+                    @if ($wallet->name)
+                        <x-wallet-card
+                            image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
+                            name="{{ $wallet->name }}"/>
+                    @else
+                        <x-wallet-card
+                            image="{{ $wallet->image }}"
+                            brand="{{ $wallet->getBrand() }}"
+                            name="{{ $wallet->brand->name }}"/>
+                    @endif
                 </a>
             @endforeach
         </div>
