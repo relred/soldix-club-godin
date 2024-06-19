@@ -32,6 +32,9 @@ class Coupon extends Model
         'is_valid_friday',
         'is_valid_saturday',
         'is_valid_sunday',
+        'target_item',
+        'action',
+        'conditional_item',
     ];
 
     public function wallet(): BelongsTo

@@ -77,6 +77,20 @@ class CouponsController extends Controller
             $coupon->campain_finishes = $request->campain_finishes;
         }
 
+        //advanced settings
+        if ($request->target_item) {
+            $coupon->target_item = $request->target_item;
+        }
+
+        if ($request->action) {
+            $coupon->action = $request->action;
+        }
+
+        if ($request->conditional_item) {
+            $coupon->conditional_item = $request->conditional_item;
+        }
+
+
         if ($request->is_active == 1 && !$this::isPublishable($coupon)) {
             return redirect()->route('corporate.coupons.edit', $coupon->id)->with('status', 'El cupon debe tener fecha de inicio y fin de campaña, y al menos un día de validez para hacerse público.');
         } else if($request->is_active){

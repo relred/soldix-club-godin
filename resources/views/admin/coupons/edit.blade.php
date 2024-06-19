@@ -133,6 +133,48 @@
                         {{ ! $coupon->is_active ?: 'checked' }}/>
                     <label for="is_active" class="ml-1 text-lg">Hacer público</label>
 
+                <div x-data="{ showAdvanced: false }" class="mt-7">
+                    <!-- Toggle Button -->
+                    <button @click.prevent="showAdvanced = !showAdvanced" class="px-4 py-2 bg-gray-500 text-white rounded">
+                        <span x-show="!showAdvanced">Mostrar Opciones Avanzadas</span>
+                        <span x-show="showAdvanced">Ocultar Opciones Avanzadas</span>
+                    </button>
+                
+                    <!-- Advanced Settings Section -->
+                    <div x-show="showAdvanced" class="mt-4 p-4 border rounded bg-gray-100">
+                        <p class="mt-5 mb-2 font-semibold text-xl">Opciones Avanzadas</p>
+                        <p class="mt-1">Identificador del producto</p>
+                        <input
+                            value="{{ $coupon->target_item }}"
+                            type="text"
+                            name="target_item"
+                            id="target_item"
+                            placeholder="Ej. 9005570635"
+                            class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium placeholder-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                        <p class="mt-1">Acción</p>
+                        <input
+                            value="{{ $coupon->action }}"
+                            type="text"
+                            name="action"
+                            id="action"
+                            placeholder="Ej. DT50"
+                            class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium placeholder-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                        <p class="mt-1">Producto condicional</p>
+                        <input
+                            value="{{ $coupon->conditional_item }}"
+                            type="text"
+                            name="conditional_item"
+                            id="conditional_item"
+                            placeholder="Ej. 9758420209"
+                            class="w-full rounded-sm border border-[#e0e0e0] bg-white mb-0.5 py-3 px-6 text-base font-medium placeholder-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+    
+                    </div>
+                </div>
+                
+
                 <input
                     type="submit"
                     class="flex w-full my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer"
