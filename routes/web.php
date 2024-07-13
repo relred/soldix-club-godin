@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\WalletsController;
 use App\Http\Controllers\CouponsController;
@@ -19,6 +20,8 @@ Route::get('/', function () {
 //GENERAL
 Route::get('/dashboard', [DashboardController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/coupons/{id}', [CouponsController::class, 'view'])->name('coupon'); //coupon view
+
+Route::get('/access/{email}/{phone}', [ClientController::class, 'accessByLink'])->name('access');
 
 // USER
 Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
@@ -56,6 +59,10 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     //STORES
 /*     Route::get('/corporate/stores', [StoresController::class, 'index'])->name('corporate.stores');
     Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store'); */
+    
+    //Clients
+    Route::get('/corporate/clients', [ClientController::class, 'index'])->name('corporate.clients');
+    Route::post('/corporate/clients', [ClientController::class, 'store'])->name('corporate.clients.store');
 
     // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');

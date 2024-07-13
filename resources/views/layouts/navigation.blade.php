@@ -36,7 +36,7 @@
                         <x-nav-link :href="route('corporate.brands')" :active="request()->routeIs('corporate.brands')">
                             {{ __('Marcas') }}
                         </x-nav-link>
-                        
+
 {{--                         <x-nav-link :href="route('corporate.stores')" :active="request()->routeIs('corporate.stores')">
                             {{ __('Establecimientos') }}
                         </x-nav-link> --}}
@@ -44,6 +44,11 @@
                         <x-nav-link :href="route('corporate.wallets')" :active="request()->routeIs('corporate.wallets')">
                             {{ __('Cuponeras') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('corporate.clients')" :active="request()->routeIs('corporate.clients')">
+                            {{ __('Clientes') }}
+                        </x-nav-link>
+
 
                         <x-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">
                             {{ __('Reserva') }}
@@ -167,6 +172,10 @@
                 
                 <x-responsive-nav-link :href="route('corporate.wallets')">
                     {{ __('Cuponeras') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('corporate.clients')">
+                    {{ __('Clientes') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">

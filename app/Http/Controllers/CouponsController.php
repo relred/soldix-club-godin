@@ -20,7 +20,7 @@ class CouponsController extends Controller
 
         return (auth()->user()->role_id == Role::IS_USER)
                     ? view('user.coupon', ['coupon' => $coupon])
-                    : view('user.coupon', ['coupon' => $coupon]);
+                    : redirect()->route('home');
     }
 
     public function add()

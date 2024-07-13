@@ -19,7 +19,7 @@
             <div class="absolute bottom-3 left-5 text-xl text-center text-white font-bold uppercase drop-shadow-2xl" style="text-shadow: 0.025em 0 black, 0 0.025em black, -0.025em 0 black, 0 -0.025em black;">{{ $valid }}</div>
 
 
-            <div class="absolute uppercase right-0 top-0 z-10 select-none rounded-lg rounded-br-none rounded-tl-none bg-orange-500 px-3 py-2 text-sm font-medium text-white">
+            <div class="absolute uppercase right-0 top-0 z-10 select-none rounded-lg rounded-br-none rounded-tl-none bg-blue-400 px-3 py-2 text-sm font-medium text-white">
                 @switch($type)
                     @case('discount_percent')
                         <div class="flex">
