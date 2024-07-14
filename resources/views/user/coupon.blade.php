@@ -111,7 +111,7 @@
             </div>
             <div class="flex w-full items-center justify-center mt-2">
                 <!-- component -->
-                <button class="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
+                <button onclick="window.open('https://wa.me/+526867861084', '_blank', 'noopener,noreferrer');" class="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
                   Whatsapp
                   <div class="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                 </button>

@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'is_local_admin' => 0,
             'role_id' => 1,
+            'club' => 'premium',
         ];
     }
 

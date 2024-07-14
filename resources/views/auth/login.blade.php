@@ -39,7 +39,7 @@
         </div>
         <div class="flex items-center justify-center mt-7">
             ¿No tienes cuenta?
-            <a class="ml-2 underline text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="#">
+            <a href="https://wa.me/+526867861084" target="_blank" class="ml-2 underline text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="#">
                 {{ __('¡Contáctanos para obtenerla!') }}
             </a>
         </div>
