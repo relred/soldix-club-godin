@@ -53,12 +53,26 @@
                                             @case('green')
                                                 Verde
                                             <span class="ml-2 h-6 w-6 bg-green-500 rounded-md"></span>
-
                                             @break
                                             @case('yellow')
                                                 Amarillo
                                             <span class="ml-2 h-6 w-6 bg-yellow-500 rounded-md"></span>
-
+                                            @break
+                                            @case('orange')
+                                                Naranja
+                                            <span class="ml-2 h-6 w-6 bg-orange-500 rounded-md"></span>
+                                            @break
+                                            @case('purple')
+                                                Morado
+                                            <span class="ml-2 h-6 w-6 bg-purple-600 rounded-md"></span>
+                                            @break
+                                            @case('pink')
+                                                Rosa
+                                            <span class="ml-2 h-6 w-6 bg-pink-400 rounded-md"></span>
+                                            @break
+                                            @case('gray')
+                                                Gris
+                                            <span class="ml-2 h-6 w-6 bg-gray-500 rounded-md"></span>
                                             @break
                                         
                                             @default
@@ -264,10 +278,14 @@
                 <label for="club" class="block text-lg ml-2 mb-2 font-semibold">Club</label>
                     <select id="club" name="club" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected disabled>Seleccione un club</option>
-                        <option value="premium">Rojo</option>
+                    <option value="premium">Rojo</option>
                     <option value="green">Verde</option>
                     <option value="blue">Azul</option>
                     <option value="yellow">Amarillo</option>
+                    <option value="orange">Naranja</option>
+                    <option value="purple">Morado</option>
+                    <option value="pink">Rosa</option>
+                    <option value="gray">Gris</option>
                 </select>
             </div>
 
