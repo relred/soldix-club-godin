@@ -14,7 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+            $numberOfUsers = 10;
+
+            User::factory()->count($numberOfUsers)->create();
+/*         User::create([
             'name' => 'admin',
             'username' => 'admin',
             'role_id' => Role::IS_ADMIN,
@@ -22,5 +25,5 @@ class UserSeeder extends Seeder
             'email' => 'admin@soldix.com',
             'password' => Hash::make('Morgan3z'),
         ]);
-    }
+ */    }
 }
