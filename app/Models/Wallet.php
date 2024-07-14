@@ -17,6 +17,7 @@ class Wallet extends Model
         'is_public',
         'brand_id',
         'corporate_id',
+        'club',
     ];
 
     public function corporate(): BelongsTo

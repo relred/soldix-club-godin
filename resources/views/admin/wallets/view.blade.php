@@ -233,6 +233,17 @@
                 <label for="false">Oculta</label>
             </div>
 
+            <div class="mb-2">
+                <label for="club" class="block text-lg ml-2 mb-2 font-semibold">Club</label>
+                    <select id="club" name="club" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected disabled>Seleccione un club</option>
+                    <option value="premium">Rojo</option>
+                    <option value="green">Verde</option>
+                    <option value="blue">Azul</option>
+                    <option value="yellow">Amarillo</option>
+                </select>
+            </div>
+
             <div class="mb-0.5">
                 <p class="text-lg ml-2 mb-2 font-semibold">Imagen (Opcional)</p>
                 <input class="block w-full text-sm text-gray-900" id="file" name="file" type="file">
