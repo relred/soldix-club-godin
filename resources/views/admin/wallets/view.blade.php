@@ -8,19 +8,19 @@
     <x-bladewind::centered-content>
         <a class="flex w-24 my-5 px-3 py-2 bg-red-500 rounded-md text-white hover:cursor-pointer" href="{{ route('corporate.wallets') }}">← Volver</a>
         <div class="grid gap-4 grid-cols-2 ">
-            <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700 md:max-w-sm rounded-2xl">
+            <div class="relative w-full group max-w-md min-w-0 mx-auto mt-12 mb-6 break-words bg-white border shadow-2xl  md:max-w-sm rounded-2xl">
                 <div class="pb-6">
                     <div class="flex flex-wrap justify-center">
                         <div class="flex justify-center w-full">
                             <div class="relative">
                                 @if ($wallet->image)
-                                    <img src="{{ $wallet->image }}" class="dark:shadow-xl border-white dark:border-gray-800 rounded-3xl align-middle border-8 absolute -m-16 -ml-18 lg:-ml-16 max-w-[150px]" />
+                                    <img src="{{ $wallet->image }}" class=" border-white  rounded-3xl align-middle border-8 absolute -m-16 -ml-18 lg:-ml-16 max-w-[150px]" />
                                 @endif
                             </div>
                         </div>
                     </div>
                     <div class="mt-24 text-center">
-                        <h3 class="mb-4 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+                        <h3 class="mb-4 text-2xl font-bold leading-normal text-gray-700 ">
                             @if ($wallet->name)
                                 {{ $wallet->name }}
                             @else
@@ -29,14 +29,41 @@
                         </h3>
                     </div>
 
-                    <div class="pt-6 pb-1.5 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
+                    <div class="pt-6 pb-1.5 mx-6 mt-6 text-center border-t border-gray-200 ">
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full px-6">
                                 <a href="{{ route('corporate.brands.view', $brand->id) }}" class="mr-2 text-lg text-blue-500">Marca: {{ $brand->name }}</a>
-                                <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                                <p class="mb-4 font-light leading-relaxed text-gray-600">
 
-                                    <p class="mb-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                                    <p class="mb-4 font-light leading-relaxed text-gray-600">
                                         Cuponera soldix club.
+                                    </p>
+
+                                    <p class="mb-4 leading-relaxed text-xl font-bold flex justify-center items-center">
+                                        Club: 
+                                        @switch($wallet->club)
+                                            @case('premium')
+                                            Rojo
+                                            <span class="ml-2 h-6 w-6 bg-red-500 rounded-md"></span>
+                                                @break
+                                            @case('blue')
+                                                Azul
+                                            <span class="ml-2 h-6 w-6 bg-blue-500 rounded-md"></span>
+                                            @break
+                                            @case('green')
+                                                Verde
+                                            <span class="ml-2 h-6 w-6 bg-green-500 rounded-md"></span>
+
+                                            @break
+                                            @case('yellow')
+                                                Amarillo
+                                            <span class="ml-2 h-6 w-6 bg-yellow-500 rounded-md"></span>
+
+                                            @break
+                                        
+                                            @default
+                                                Sin Asignar
+                                        @endswitch
                                     </p>
     
                                     <span class="mr-2 text-lg">Visibilidad:</span> 
@@ -235,9 +262,9 @@
 
             <div class="mb-2">
                 <label for="club" class="block text-lg ml-2 mb-2 font-semibold">Club</label>
-                    <select id="club" name="club" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="club" name="club" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected disabled>Seleccione un club</option>
-                    <option value="premium">Rojo</option>
+                        <option value="premium">Rojo</option>
                     <option value="green">Verde</option>
                     <option value="blue">Azul</option>
                     <option value="yellow">Amarillo</option>
