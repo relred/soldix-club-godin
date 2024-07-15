@@ -22,35 +22,39 @@
         @livewireStyles
         @livewireScripts
     </head>
-    <body>
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center  dark:bg-dots-lighter  selection:bg-red-500 selection:text-white">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 md:px-12 text-right">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Iniciar sesión</a>
+    <body class="bg-gradient-to-r from-[#013773] to-blue-700">
+            <section>
+                @if (Route::has('login'))
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 md:px-12 text-right bg-[#147af8] font-heavitas uppercase font-extrabold w-full">
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="font-bold text-white hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-bold text-white hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Iniciar sesión</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrarme</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 font-bold text-white hover:text-gray-600  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrarme</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+                <div class="h-screen container mx-auto flex flex-col md:flex-row items-center text-white">
+                        <img class="md:hidden mt-6 mx-8" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721011910/assets/soldix/yyw5dtxsaheiwpm3ssbt.png" alt="">
+                        <div class="w-full lg:w-2/5 items-start p-8">
+                            <img class="max-w-[90px] mb-3 hidden md:block" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721012578/assets/soldix/histmye8aqvlfbu2utou.png">
+                            <h1 class="font-heavitas text-5xl font-extrabold md:text-5xl uppercase md:leading-tight mb-2">Cuidamos tu <span class="text-[#147af8]">Salúd. </span>
+                            </h1>
+                            <p class="text-lg text-gray-50">En cuidadores sabemos lo importante que es el bienestar de tus seres queridos. Por eso hemos creado un carnet exclusivo que te brinda acceso a los mejores servicios y beneficios</p>
+                            <img class="mb-7 md:mb-10" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721012504/assets/soldix/z3wvrqvjlqsnhj63onwi.png">
+                            <a href="https://wa.me/+526867861084" target="_blank"
+                                class="bg-transparent text-2xl ml-6 md:ml-2 hover:bg-[#147af8] text-white font-bold hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border-white border-2 hover:border-transparent">
+                                Obten tu carnet</a>
+                        </div>
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <x-bladewind::empty-state
-                    image="https://res.cloudinary.com/de6hiq5n4/image/upload/v1682900896/assets/soldix/a_n87auu.jpg">
+                        <div class="items-center hidden md:flex">
+                            <img src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721009303/assets/soldix/ryfhrolz3puno3vgrspm.png">
+                        </div>
+                    </div>
 
-                    <p class="pb-4">Soldix club</p>
-                    <a href="{{ route('login') }}">
-                        <x-bladewind::button color="red" size="small">
-                            Entrar
-                        </x-bladewind::button>
-                    </a>
-
-                </x-bladewind::empty-state>
-            </div>
-        </div>
+            </section>
     </body>
 </html>

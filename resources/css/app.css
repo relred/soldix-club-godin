@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Heavitas';
+    src: url('/fonts/heavitas.ttf') format('truetype');
+    font-weight: bolder;
+    font-style: bolder;
+  }
+  
