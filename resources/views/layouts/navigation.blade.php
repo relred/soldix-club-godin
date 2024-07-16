@@ -45,8 +45,8 @@
                             {{ __('Cuponeras') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('corporate.clients')" :active="request()->routeIs('corporate.clients')">
-                            {{ __('Clientes') }}
+                        <x-nav-link :href="route('corporate.cashiers')" :active="request()->routeIs('corporate.cashiers')">
+                            {{ __('Cuidadores') }}
                         </x-nav-link>
 
 
@@ -174,8 +174,8 @@
                     {{ __('Cuponeras') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('corporate.clients')">
-                    {{ __('Clientes') }}
+                <x-responsive-nav-link :href="route('corporate.cashiers')">
+                    {{ __('Cuidadores') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">

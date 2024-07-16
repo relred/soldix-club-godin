@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\CorporatesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CashierController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\WalletsController;
@@ -61,8 +62,11 @@ Route::middleware(['auth', 'verified', 'is_corporate'])->group(function () {
     Route::post('/corporate/stores', [StoresController::class, 'store'])->name('corporate.stores.store'); */
     
     //Clients
-    Route::get('/corporate/clients', [ClientController::class, 'index'])->name('corporate.clients');
-    Route::post('/corporate/clients', [ClientController::class, 'store'])->name('corporate.clients.store');
+/*     Route::get('/corporate/clients', [ClientController::class, 'index'])->name('corporate.clients');
+    Route::post('/corporate/clients', [ClientController::class, 'store'])->name('corporate.clients.store'); */
+
+    Route::get('/corporate/cashiers', [CashierController::class, 'index'])->name('corporate.cashiers');
+    Route::post('/corporate/cashiers', [CashierController::class, 'store'])->name('corporate.cashiers.store');
 
     // COUPONS
     Route::get('/corporate/coupons', [CouponsController::class, 'index'])->name('corporate.coupons');
