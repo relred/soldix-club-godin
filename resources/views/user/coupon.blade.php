@@ -6,101 +6,10 @@
     </x-slot>
 
     <x-bladewind::centered-content size="small">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ auth()->user()->id . '=' . $coupon->redeem_id }}" class="mx-auto my-6" >
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ url('redeem/' . $coupon->redeem_id . '/' . auth()->user()->id) }}" class="mx-auto my-6" >
         <p class="text-4xl text-center mb-9 mt-4">{{ auth()->user()->id . '=' . $coupon->redeem_id }}</p>
 
-{{--         <div class="mt-8">
-            <img src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1683075785/assets/soldix/dummy%20images/t_ht9sxf.jpg" class="rounded-3xl">
-        </div> --}}
-        <h2 class="text-2xl text-center font-bold mb-4">
-            {{ $coupon->name }}
-        </h2>
-
-        <div class="my-4 whitespace-normal break-words rounded-lg border border-blue-gray-50 bg-white p-4 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
-            <p class="text-center font-light text-xl">Dias de Validez</p>
-            <div class="grid grid-cols-7 mb-5">
-        
-                <label for="day1" class="text-center select-none">Lun</label>
-                <label for="day2" class="text-center select-none">Mar</label>
-                <label for="day3" class="text-center select-none">Mie</label>
-                <label for="day4" class="text-center select-none">Jue</label>
-                <label for="day5" class="text-center select-none">Vie</label>
-                <label for="day6" class="text-center select-none">Sáb</label>
-                <label for="day7" class="text-center select-none">Dom</label>
-    
-                <div class="inline-block m-auto">
-                    <input
-                        id="day1"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_monday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_monday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day2"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_tuesday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_tuesday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day3"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_wednesday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_wednesday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day4"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_thursday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_thursday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day5"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_friday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_friday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day6"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_saturday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_saturday ?: 'checked' }}/>
-                </div>
-                <div class="inline-block m-auto">
-                    <input
-                        id="day7"
-                        class="relative float-left mt-[0.15rem] p-4 rounded-[35%] border-[0.125rem] border-solid border-neutral-300 hover:cursor-pointer"
-                        type="checkbox"
-                        name="is_valid_sunday"
-                        value="1"
-                        disabled
-                        {{ ! $coupon->is_valid_sunday ?: 'checked' }}/>
-                </div>
-              
-            </div>
-        </div>
+        <x-coupon-validity-days :coupon="$coupon" />
 
         <div class="bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
             <div class="flex">

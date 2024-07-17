@@ -1,6 +1,8 @@
 <a 
     @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
         href="{{ route('corporate.coupons.edit', $id) }}"
+    @elseif (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
+        href="#"
     @else
         href="{{ route('coupon', $id) }}"
     @endif

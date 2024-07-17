@@ -10,6 +10,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\WalletsController;
 use App\Http\Controllers\CouponsController;
+use App\Http\Controllers\RedeemedCouponController;
+use App\Models\RedeemedCoupon;
 use Illuminate\Support\Facades\Route;
 
 // HOME
@@ -43,6 +45,9 @@ Route::get('/pos', function () {
 Route::get('/result', function () {
     return view('pos.result');
 })->middleware(['auth', 'verified'])->name('result');
+
+Route::get('/redeem/{coupon_id}/{user_id}', [RedeemedCouponController::class, 'view'])->name('pos.coupon.vew');
+Route::post('/redeem', [RedeemedCouponController::class, 'store'])->name('pos.coupon.redeem');
 // END CASHIER
 
 // CORPORATE
