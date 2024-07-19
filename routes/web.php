@@ -38,16 +38,22 @@ Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
 // END USER
 
 // CASHIER
-Route::get('/pos', function () {
-    return view('pos.pos');
-})->middleware(['auth', 'verified'])->name('pos');
+Route::middleware(['auth', 'is_cashier', 'verified'])->group(function (){
+    Route::get('/pos', function () {
+        return view('pos.pos');
+    })->name('pos');
+    
+    Route::get('/result', function () {
+        return view('pos.result');
+    })->name('result');
+    
+    Route::get('/redeem/{coupon_id}/{user_id}', [RedeemedCouponController::class, 'view'])->name('pos.coupon.vew');
+    Route::post('/redeem', [RedeemedCouponController::class, 'store'])->name('pos.coupon.redeem');
+    Route::get('/pos/error/{coupon_id}/{user_id}', [RedeemedCouponController::class, 'errorView'])->name('pos.error');
+    Route::get('/pos/success', fn() => view('pos.success'))->name('pos.success');
+    Route::get('/pos/history', [CashierController::class, 'redeemHistory'])->name('pos.history');
 
-Route::get('/result', function () {
-    return view('pos.result');
-})->middleware(['auth', 'verified'])->name('result');
-
-Route::get('/redeem/{coupon_id}/{user_id}', [RedeemedCouponController::class, 'view'])->name('pos.coupon.vew');
-Route::post('/redeem', [RedeemedCouponController::class, 'store'])->name('pos.coupon.redeem');
+});
 // END CASHIER
 
 // CORPORATE

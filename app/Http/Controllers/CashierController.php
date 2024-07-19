@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RedeemedCoupon;
 use App\Models\Role;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -48,6 +49,11 @@ class CashierController extends Controller
 
 
         return redirect()->route('corporate.cashiers')->with('status','Usuario Registrado con éxito');
+    }
+
+    function redeemHistory() {
+        $coupons = RedeemedCoupon::where('cashier', auth()->user()->id)->latest()->get();
+        return View('pos.history',['coupons' => $coupons]);
     }
 
 }

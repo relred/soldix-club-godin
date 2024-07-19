@@ -24,8 +24,12 @@
 
                     @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
                         <x-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
-                            {{ __('Point of Sale') }}
+                            {{ __('Inicio') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('pos.history')" :active="request()->routeIs('pos.history')">
+                            {{ __('Historial') }}
+                        </x-nav-link>
+
                     @endif
 
                     @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
@@ -153,8 +157,12 @@
 
             @if (auth()->user()->role_id == App\Models\Role::IS_CASHIER)
                 <x-responsive-nav-link :href="route('pos')" :active="request()->routeIs('pos')">
-                    {{ __('Point of Sale') }}
+                    {{ __('Inicio') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pos.history')" :active="request()->routeIs('pos/.history')">
+                    {{ __('Historial') }}
+                </x-responsive-nav-link>
+
             @endif
 
             @if (auth()->user()->role_id == App\Models\Role::IS_CORPORATE)
