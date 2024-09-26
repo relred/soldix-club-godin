@@ -22,12 +22,12 @@
         @livewireStyles
         @livewireScripts
     </head>
-    <body class="bg-gradient-to-r from-[#013773] to-blue-700">
+    <body class="bg-gradient-to-r from-[#dfb2ab] to-rose-300">
             <section>
                 @if (Route::has('login'))
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 md:px-12 text-right bg-[#147af8] font-heavitas uppercase font-extrabold w-full">
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 md:px-12 text-right bg-red-500 font-heavitas uppercase font-extrabold w-full">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="font-bold text-white hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="font-bold text-white hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Mi cuponera</a>
                         @else
                             <a href="{{ route('login') }}" class="font-bold text-white hover:text-gray-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Iniciar sesión</a>
 
@@ -37,23 +37,36 @@
                         @endauth
                     </div>
                 @endif
-                <div class="h-screen container mx-auto flex flex-col md:flex-row items-center text-white">
-                        <img class="md:hidden mt-6 mx-8" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721011910/assets/soldix/yyw5dtxsaheiwpm3ssbt.png" alt="">
-                        <div class="w-full lg:w-2/5 items-start p-8">
-                            <img class="max-w-[90px] mb-3 hidden md:block" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721012578/assets/soldix/histmye8aqvlfbu2utou.png">
-                            <h1 class="font-heavitas text-5xl font-extrabold md:text-5xl uppercase md:leading-tight mb-2">Cuidamos tu <span class="text-[#147af8]">Salúd. </span>
-                            </h1>
-                            <p class="text-lg text-gray-50">En cuidadores sabemos lo importante que es el bienestar de tus seres queridos. Por eso hemos creado un carnet exclusivo que te brinda acceso a los mejores servicios y beneficios</p>
-                            <img class="mb-7 md:mb-10" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721012504/assets/soldix/z3wvrqvjlqsnhj63onwi.png">
-                            <a href="https://wa.me/+526867861084" target="_blank"
-                                class="bg-transparent text-2xl ml-6 md:ml-2 hover:bg-[#147af8] text-white font-bold hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border-white border-2 hover:border-transparent">
-                                Obten tu carnet</a>
-                        </div>
 
-                        <div class="items-center hidden md:flex">
-                            <img src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721009303/assets/soldix/ryfhrolz3puno3vgrspm.png">
-                        </div>
+                <aside class="relative overflow-hidden text-black rounded-lg sm:mx-16 mx-2 sm:py-16">
+                    <div class="relative z-10 max-w-screen-xl px-4  pb-20 pt-10 sm:py-24 mx-auto sm:px-6 lg:px-8">
+                      <div class="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
+                        <h2 class="text-4xl text-white font-bold sm:text-5xl">
+                          Soldix Club
+                        </h2>
+                  
+                        <a href="{{ url('/dashboard') }}" class="inline-flex text-white items-center px-6 py-3 font-medium bg-rose-500 rounded-lg hover:opacity-75">
+                            Comenzar &nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-right-lines-filled" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M12.089 3.634a2 2 0 0 0 -1.089 1.78l-.001 2.585l-1.999 .001a1 1 0 0 0 -1 1v6l.007 .117a1 1 0 0 0 .993 .883l1.999 -.001l.001 2.587a2 2 0 0 0 3.414 1.414l6.586 -6.586a2 2 0 0 0 0 -2.828l-6.586 -6.586a2 2 0 0 0 -2.18 -.434l-.145 .068z" stroke-width="0" fill="currentColor" />
+                                <path d="M3 8a1 1 0 0 1 .993 .883l.007 .117v6a1 1 0 0 1 -1.993 .117l-.007 -.117v-6a1 1 0 0 1 1 -1z" stroke-width="0" fill="currentColor" />
+                                <path d="M6 8a1 1 0 0 1 .993 .883l.007 .117v6a1 1 0 0 1 -1.993 .117l-.007 -.117v-6a1 1 0 0 1 1 -1z" stroke-width="0" fill="currentColor" />
+                            </svg>
+                        </a>
+                      </div>
                     </div>
+                  
+                    <div class="absolute inset-0 w-full sm:my-20 sm:pt-1 pt-12 h-full ">
+                      <img class="w-96" src="https://i.ibb.co/5BCcDYB/Remote2.png"  />
+                    </div>
+                  </aside>
+                  
+                  <div class="grid  place-items-center sm:mt-20">
+                  <img class="sm:w-96 w-48" src="https://i.ibb.co/2M7rtLk/Remote1.png"  />
+                  </div>                  
+                  
+                </div>
 
             </section>
     </body>

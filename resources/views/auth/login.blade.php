@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <img class="w-full" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1721011533/assets/soldix/wty4cfjgob0q4yaqmynr.png" alt="Soldix Club">
+    {{-- <img class="w-full" src="" alt="Soldix Club"> --}}
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

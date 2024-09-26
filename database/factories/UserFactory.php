@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserFactory extends Factory
 {
+    protected static $hashedPassword;
     /**
      * Define the model's default state.
      *
@@ -18,15 +19,15 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => "Usuario" . $this->faker->unique()->numerify('#####'),
-            'email' => $this->faker->unique()->lexify('????') . "@" . $this->faker->lexify('????'),
-            'phone' => $this->faker->numerify('##########'),
-            'password' => Hash::make('password'),
-            'is_local_admin' => 0,
-            'role_id' => 1,
-            'club' => 'premium',
-        ];
+            return [
+                'name' => "Usuario" . $this->faker->unique()->numerify('#####'),
+                'email' => $this->faker->unique()->lexify('????') . "@" . $this->faker->lexify('????'),
+                'phone' => $this->faker->numerify('##########'),
+                'password' => self::$hashedPassword ?? (self::$hashedPassword = Hash::make('password')),
+                'is_local_admin' => 0,
+                'role_id' => 1,
+                'club' => 'premium',
+            ];
     }
 
     /**

@@ -33,7 +33,7 @@ class GenerateUserLinks extends Command
         $users = User::latest()->take($count)->get();
 
         $links = $users->map(function ($user) {
-            return "https://cuidadores.soldixclub.com/access/" . $user->email . "/" . $user->phone;
+            return url('access/' . $user->email . '/' . $user->phone);
         });
 
         $content = $links->implode("\n");
