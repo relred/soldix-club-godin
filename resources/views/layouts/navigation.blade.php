@@ -50,7 +50,7 @@
                         </x-nav-link>
 
                         <x-nav-link :href="route('corporate.cashiers')" :active="request()->routeIs('corporate.cashiers')">
-                            {{ __('Cuidadores') }}
+                            {{ __('Cajeros') }}
                         </x-nav-link>
 
 
@@ -183,7 +183,7 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('corporate.cashiers')">
-                    {{ __('Cuidadores') }}
+                    {{ __('Cajeros') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('corporate.wallets')" style="color:#b5b5b5; cursor: not-allowed;">

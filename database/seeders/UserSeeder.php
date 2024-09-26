@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'role_id' => Role::IS_ADMIN,
             'is_local_admin' => 1,
             'email' => 'admin@soldix.com',
-            'password' => Hash::make('Morgan3z'),
+            'password' => Hash::make(''),
         ]);
  */    }
 }

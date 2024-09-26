@@ -1,1 +1,1 @@
-<img class="w-28" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1720825881/assets/soldix/c4lrhn6lq0xu0238cfgw.png" alt="Cuidadores">   
+{{-- <img class="w-28" src="https://res.cloudinary.com/de6hiq5n4/image/upload/v1720825881/assets/soldix/c4lrhn6lq0xu0238cfgw.png" alt="Cuidadores">    --}}
